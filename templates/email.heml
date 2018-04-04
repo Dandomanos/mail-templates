@@ -3,12 +3,16 @@
     <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
     <style>
       body {
-        background-color: secondaryBrandingColor;
-        padding:20px;        
+        background-color: secondaryBackgroundColor;
+        padding:20px;
+        color:fontsColor;        
       }
       container {
         max-width: 700px;
-        background-color:backgroundColor;
+        background-color:backgroundsColor;
+      }
+      h1 {
+        font-size:h1FontSize;
       }
       block {
         padding:20px;

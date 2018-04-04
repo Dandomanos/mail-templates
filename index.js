@@ -1,8 +1,6 @@
 import heml from "heml";
-import del from "del";
-import mkdirp from "mkdirp";
 import fs from "fs";
-import cheerio from "cheerio";
+import writeFile from "./src/writeFile";
 const options = {
   validate: "soft", // validation levels - 'strict'|'soft'|'none'
   cheerio: {}, // config passed to cheerio parser
@@ -14,9 +12,21 @@ const options = {
 };
 
 const style = {
+  brandingColor: "#8BD2E0",
+  backgroundsColor: "#3976BD",
+  secondaryBackgroundColor: "#BABABA",
+  fontsColor: "#FDFDFD",
+  fontSize: "16px",
+  h1FontSize: "30px"
+};
+
+const promoStyle = {
   brandingColor: "#99CC00",
-  backgroundColor: "blue",
-  secondaryBackgroundColor: "olive"
+  backgroundsColor: "blue",
+  secondaryBackgroundColor: "olive",
+  fontsColor: "#FFFFFF",
+  fontSize: "10px",
+  h1FontSize: "20px"
 };
 
 //Html template file name
@@ -29,29 +39,16 @@ const template = fs
   .readFileSync(__dirname + "/templates/" + name + ".heml")
   .toString();
 
-//Output folder
-const output = __dirname + "/output/";
-del.sync(output);
-mkdirp.sync(output);
-
 const mailTemplate = heml(template, options).then(
   ({ html, metadata, errors }) => {
-    // console.log("HTML", html);
-    // const styledHtml = html.split("$brandingColor").join("blue");
+    //Apply custom styles
     Object.keys(style).map((key, index) => {
       var value = style[key];
       console.log(`${key}: ${value}`);
       html = html.replace(new RegExp(key, "g"), value);
     });
-    const styledHtml = html.replace(new RegExp("brandingColor", "g"), "blue");
-    //Init $ instance
-    let $ = cheerio.load(styledHtml);
-    let $c = $("html").clone();
-    mkdirp.sync(output);
-    let file = output + `${name}.html`;
 
-    //Write html file
-    fs.writeFileSync(file, $c.html());
-    console.log("Writed " + file);
+    //Write output mail template
+    writeFile(html, name);
   }
 );
