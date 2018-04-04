@@ -3,12 +3,12 @@
     <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
     <style>
       body {
-        background-color: green;
+        background-color: secondaryBrandingColor;
         padding:20px;        
       }
       container {
         max-width: 700px;
-        background-color:white;
+        background-color:backgroundColor;
       }
       block {
         padding:20px;
@@ -17,7 +17,7 @@
       button {
         width:320px;
         padding: 20px 11px;
-        background-color:rgb(56, 117, 53);
+        background-color:brandingColor;
         border-radius:10px;
       }
     </style>
