@@ -8,7 +8,7 @@ const options = {
   elements: [
     // any custom elements you want to use
   ]
-}
+};
 
 heml(
   `
@@ -27,5 +27,5 @@ heml(
 `,
   options
 ).then(({ html, metadata, errors }) => {
-    console.log('HTML', html)
-})
+  console.log("HTML", html);
+});

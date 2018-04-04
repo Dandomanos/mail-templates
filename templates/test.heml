@@ -1,0 +1,57 @@
+<heml>
+  <head>
+    <subject>Welcome to HEML!</subject>
+    <style>
+      body { background: SkyBlue; }
+      h1 { color: DarkViolet; }
+      p {
+      color:white;
+      }
+      column::text {
+        color:white;
+        }
+      column.red {
+        background:red;
+        color:white;
+        font:white;
+      }
+      column.red p {
+       color:white;
+       }
+      column.blue {
+        background:blue;
+        color:yellow;
+      }
+      column.green {
+        background:green;
+      }
+      button {
+        background: red;
+        color:olive;
+      }
+      button:hover {
+        background: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <container>
+      <marquee><h1>Explore the world of email! 💌</h1></marquee>
+      <block><button>button 1</button></block>
+      <block>
+        <row>
+          <column class="blue">
+            <p>column 1</p>
+          </column>
+          <column class="red">
+            <p>column 2</p>
+          </column>
+          <column class="green">
+            <p>column 3</p>
+          </column>
+        </row>
+      </block>
+      <block>test</block>
+    </container>
+  </body>
+</heml>

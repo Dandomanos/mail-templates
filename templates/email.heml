@@ -1,14 +1,36 @@
 <heml>
   <head>
-    <subject>Email Rox!</subject>
+    <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
     <style>
-      body { background: SkyBlue; }
-      h1 { color: DarkViolet; }
+      body {
+        background-color: green;
+        padding:20px;        
+      }
+      container {
+        max-width: 700px;
+        background-color:white;
+      }
+      block {
+        padding:20px;
+        text-align:center;
+      }
+      button {
+        width:320px;
+        padding: 20px 11px;
+        background-color:rgb(56, 117, 53);
+        border-radius:10px;
+      }
     </style>
   </head>
   <body>
     <container>
-      <marquee><h1>Hello world 💌</h1></marquee>
+      <marquee><h1>Explore the world of email! 💌</h1></marquee>
+      <img src="https://s3-eu-west-1.amazonaws.com/orchextra-images-pt-dev/5a1fcc5cda4a93183c915032.jpeg" alt="poro-king">
+      <block>
+        <h1>CONGRATULATIONS, YOU'RE A WINNER!</h1>
+        <p>You won an amazing prize. Click on the button below and claim your prize.</p>
+        <button href="https://heml.io">Claim Prize</button>
+      </block>
     </container>
   </body>
 </heml>
