@@ -9,3 +9,4 @@ parameters.json
 buildCache/
 package-lock.json
 cypress.json
+.npmrc
