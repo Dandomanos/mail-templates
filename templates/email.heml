@@ -3,16 +3,16 @@
     <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
     <style>
       body {
-        background-color: secondaryBackgroundColor;
+        background-color: <%= secondaryBackgroundColor %>;
         padding:20px;
-        color:fontsColor;        
+        color:<%= fontsColor %>;        
       }
       container {
         max-width: 700px;
-        background-color:backgroundsColor;
+        background-color:<%= backgroundsColor %>;
       }
       h1 {
-        font-size:h1FontSize;
+        font-size:<%= h1FontSize %>;
       }
       block {
         padding:20px;
@@ -21,7 +21,7 @@
       button {
         width:320px;
         padding: 20px 11px;
-        background-color:brandingColor;
+        background-color:<%= brandingColor %>;
         border-radius:10px;
       }
     </style>
@@ -29,11 +29,11 @@
   <body>
     <container>
       <marquee><h1>Explore the world of email! 💌</h1></marquee>
-      <img src="https://s3-eu-west-1.amazonaws.com/orchextra-images-pt-dev/5a1fcc5cda4a93183c915032.jpeg" alt="poro-king">
+      <img src="<%= imageHeader %>" alt="poro-king">
       <block>
-        <h1>CONGRATULATIONS, YOU'RE A WINNER!</h1>
-        <p>You won an amazing prize. Click on the button below and claim your prize.</p>
-        <button href="https://heml.io">Claim Prize</button>
+        <h1><%= title %></h1>
+        <p><%= description %></p>
+        <button href="<%= buttonUrl %>"><%= buttonText %></button>
       </block>
     </container>
   </body>

@@ -4,7 +4,7 @@ import mkdirp from "mkdirp";
 import fs from "fs";
 
 //Output folder
-const output = __dirname + "/output/";
+const output = __dirname + "/../output/";
 del.sync(output);
 mkdirp.sync(output);
 

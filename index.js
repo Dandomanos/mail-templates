@@ -1,6 +1,7 @@
 import heml from "heml";
 import fs from "fs";
 import writeFile from "./src/writeFile";
+import _ from "lodash";
 const options = {
   validate: "soft", // validation levels - 'strict'|'soft'|'none'
   cheerio: {}, // config passed to cheerio parser
@@ -20,13 +21,14 @@ const style = {
   h1FontSize: "30px"
 };
 
-const promoStyle = {
-  brandingColor: "#99CC00",
-  backgroundsColor: "blue",
-  secondaryBackgroundColor: "olive",
-  fontsColor: "#FFFFFF",
-  fontSize: "10px",
-  h1FontSize: "20px"
+const templateContent = {
+  imageHeader:
+    "https://s3-eu-west-1.amazonaws.com/orchextra-images-pt-dev/5a1fcc5cda4a93183c915032.jpeg",
+  title: "CONGRATULATIONS, YOU'RE A WINNER!",
+  description:
+    "You won an amazing prize. Click on the button below and claim your prize.",
+  buttonText: "Claim Prize",
+  buttonUrl: "https://heml.io"
 };
 
 //Html template file name
@@ -39,16 +41,12 @@ const template = fs
   .readFileSync(__dirname + "/templates/" + name + ".heml")
   .toString();
 
-const mailTemplate = heml(template, options).then(
-  ({ html, metadata, errors }) => {
-    //Apply custom styles
-    Object.keys(style).map((key, index) => {
-      var value = style[key];
-      console.log(`${key}: ${value}`);
-      html = html.replace(new RegExp(key, "g"), value);
-    });
+let styledHtml = _.template(template);
 
-    //Write output mail template
-    writeFile(html, name);
-  }
-);
+const mailTemplate = heml(
+  styledHtml(_.assign({}, style, templateContent)),
+  options
+).then(({ html, metadata, errors }) => {
+  //Write output mail template
+  writeFile(html, name);
+});
