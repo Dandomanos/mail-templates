@@ -20,6 +20,7 @@
     "babel-eslint": "^8.2.2",
     "cheerio": "^1.0.0-rc.2",
     "del": "^3.0.0",
+    "eslint": "^4.19.1",
     "eslint-config-gigigo-standard": "^0.1.9",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
