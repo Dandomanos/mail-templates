@@ -1,12 +1,12 @@
 import _ from 'lodash'
 
-const defaultStyle = {
-  brandingColor: '#e91721',
-  backgroundsColor: '#fff',
-  secondaryBackgroundColor: '#ebebeb',
-  fontsColor: '#474747',
-  fontSize: 16,
-  h1FontSize: 30,
+const styles = {
+  brandingColor: { type: 'color', default: '#e91721' },
+  backgroundsColor: { type: 'color', default: '#fff' },
+  secondaryBackgroundColor: { type: 'color', default: '#ebebeb' },
+  fontsColor: { type: 'color', default: '#474747' },
+  fontSize: { type: 'px', default: 16 },
+  h1FontSize: { type: 'px', default: 30 },
 }
 
 const types = {
@@ -20,18 +20,9 @@ const types = {
   },
 }
 
-const schemes = {
-  brandingColor: 'color',
-  backgroundsColor: 'color',
-  secondaryBrandingColor: 'color',
-  fontsColor: 'color',
-  fontSize: 'px',
-  h1FontSize: 'px',
-}
-
 const validateStyle = ([key, val]) => {
-  const scheme = schemes[key]
-  const type = scheme && types[scheme]
+  const scheme = styles[key]
+  const type = scheme && types[scheme.type]
 
   if (!scheme || !type || !type.check(val)) return null
 
@@ -41,20 +32,13 @@ const validateStyle = ([key, val]) => {
 const getPromoStyle = promoConfig => {
   if (!promoConfig) return {}
 
-  const style = _.get(promoConfig, 'template.style', {})
+  const promoStyle = _.get(promoConfig, 'template.style', {})
 
   const getValue = key => {
-    return validateStyle([key, style[key]]) || defaultStyle[key]
+    return validateStyle([key, promoStyle[key]]) || styles[key].default
   }
 
-  return {
-    brandingColor: getValue('brandingColor'),
-    backgroundsColor: getValue('backgroundsColor'),
-    secondaryBackgroundColor: getValue('secondaryBackgroundColor'),
-    fontsColor: getValue('fontsColor'),
-    fontSize: getValue('fontSize'),
-    h1FontSize: getValue('h1FontSize'),
-  }
+  return Object.keys(styles).reduce((prev, cur) => _.assign(prev, { [cur]: getValue(cur) }), {})
 }
 
 export default getPromoStyle
