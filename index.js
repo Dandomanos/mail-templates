@@ -7,11 +7,6 @@ import getPromoContent from './src/lib/getPromoContent'
 import writeFile from './src/writeFile'
 import _ from 'lodash'
 
-// Html template file name
-const name = process.argv[2] || 'email'
-
-if (!name) throw new Error('No template name defined')
-
 const options = {
   validate: 'soft', // validation levels - 'strict'|'soft'|'none'
   cheerio: {}, // config passed to cheerio parser
@@ -24,14 +19,21 @@ const options = {
 const debug = require('debug')('app:index')
 
 const participateResult = {
-  status: 'winner',
+  status: 'not winner',
   date: '1522999245280',
   prizeId: 273,
   type: 'tier',
   participationId: 585492,
+  promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
 }
 
-const getTemplate = async (environment, promoId, lang, participate = participateResult) => {
+const getTemplate = async (
+  environment,
+  promoId,
+  lang,
+  participate,
+  templateName = 'participate'
+) => {
   // get configuration
   const promoConfig = await getConfiguration(environment, promoId)
   debug('promoConfig', promoConfig)
@@ -41,16 +43,16 @@ const getTemplate = async (environment, promoId, lang, participate = participate
   debug('promoStyle', promoStyle)
 
   // Get Promo Template
-  const template = fs.readFileSync(`${__dirname}/templates/${name}.heml`).toString()
+  const template = fs.readFileSync(`${__dirname}/templates/${templateName}.heml`).toString()
   const styledHtml = _.template(template)
 
   // Get Promo Content
-  const templateContent = getPromoContent()
+  const templateContent = getPromoContent(promoConfig, lang, participate)
 
   // Compile email with promoStyle and templateContent
   const mailTemplate = await heml(styledHtml(_.assign({}, promoStyle, templateContent)), options)
 
   // write
-  writeFile(mailTemplate.html, name)
+  writeFile(mailTemplate.html, templateName)
 }
 getTemplate('staging', 455, 'es', participateResult)

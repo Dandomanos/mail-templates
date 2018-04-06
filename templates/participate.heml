@@ -1,0 +1,45 @@
+<heml>
+  <head>
+    <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
+    <style>
+      body {
+        background-color: <%= secondaryBackgroundColor %>;
+        padding:20px;
+        color:<%= fontsColor %>;        
+      }
+      container {
+        max-width: 700px;
+        background-color:<%= backgroundsColor %>;
+      }
+      h1 {
+        font-size:<%= h1FontSize %>;
+      }
+      block {
+        padding:20px;
+        text-align:center;
+      }
+      button {
+        width:320px;
+        padding: 20px 11px;
+        background-color:<%= brandingColor %>;
+        border-radius:10px;
+      }
+      button.secondary {
+        margin-top:16px;
+        background-color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <container>
+      <marquee><h1>Explore the world of email! 💌</h1></marquee>
+      <img src="<%= imageHeader %>" alt="poro-king">
+      <block>
+        <h1><%= title %></h1>
+        <p><%= content %></p>
+        <button href="<%= buttonUrl %>"><%= buttonText %></button>
+        <%= secondaryButton %>
+      </block>
+    </container>
+  </body>
+</heml>
