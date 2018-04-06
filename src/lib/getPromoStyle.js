@@ -24,9 +24,7 @@ const validateStyle = ([key, val]) => {
   const scheme = styles[key]
   const type = scheme && types[scheme.type]
 
-  if (!scheme || !type || !type.check(val)) return null
-
-  return type.normalize(val)
+  return !scheme || !type || !type.check(val) ? null : type.normalize(val)
 }
 
 const getPromoStyle = promoConfig => {
