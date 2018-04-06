@@ -21,8 +21,16 @@ const options = {
     // any custom elements you want to use
   ],
 }
-
 const debug = require('debug')('app:index')
+
+const participateResult = {
+  status: 'winner',
+  date: '1522999245280',
+  prizeId: 273,
+  type: 'tier',
+  participationId: 585492,
+}
+debug('mock result', participateResult)
 ;(async function() {
   // get configuration
   const promoConfig = await getConfiguration()
