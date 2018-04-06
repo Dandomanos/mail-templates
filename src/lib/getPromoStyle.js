@@ -21,29 +21,17 @@ const types = {
 }
 
 const schemes = {
-  brandingColor: {
-    type: 'color',
-  },
-  backgroundsColor: {
-    type: 'color',
-  },
-  secondaryBrandingColor: {
-    type: 'color',
-  },
-  fontsColor: {
-    type: 'color',
-  },
-  fontSize: {
-    type: 'px',
-  },
-  h1FontSize: {
-    type: 'px',
-  },
+  brandingColor: 'color',
+  backgroundsColor: 'color',
+  secondaryBrandingColor: 'color',
+  fontsColor: 'color',
+  fontSize: 'px',
+  h1FontSize: 'px',
 }
 
 const validateStyle = ([key, val]) => {
   const scheme = schemes[key]
-  const type = scheme && types[scheme.type]
+  const type = scheme && types[scheme]
 
   if (!scheme || !type || !type.check(val)) return null
 
