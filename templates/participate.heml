@@ -1,6 +1,6 @@
 <heml>
   <head>
-    <subject>CONGRATULATIONS, YOU'RE A WINNER!</subject>
+    <subject></subject>
     <style>
       body {
         background-color: <%= secondaryBackgroundColor %>;
@@ -32,7 +32,6 @@
   </head>
   <body>
     <container>
-      <marquee><h1>Explore the world of email! 💌</h1></marquee>
       <img src="<%= imageHeader %>" alt="poro-king">
       <block>
         <h1><%= title %></h1>
