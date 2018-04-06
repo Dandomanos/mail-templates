@@ -30,10 +30,10 @@ const participateResult = {
   type: 'tier',
   participationId: 585492,
 }
-debug('mock result', participateResult)
-;(async function() {
+
+const getTemplate = async (environment, promoId, lang, participate = participateResult) => {
   // get configuration
-  const promoConfig = await getConfiguration()
+  const promoConfig = await getConfiguration(environment, promoId)
   debug('promoConfig', promoConfig)
 
   // Get Promo Style
@@ -52,4 +52,5 @@ debug('mock result', participateResult)
 
   // write
   writeFile(mailTemplate.html, name)
-})()
+}
+getTemplate('staging', 455, 'es', participateResult)
