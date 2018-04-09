@@ -1,5 +1,6 @@
 import _ from 'lodash'
 const debug = require('debug')('app:promo-style')
+debug.enabled = false
 /* ********************      SCHEMES       ***************** */
 const primary = {
   highlightedBorder: { type: 'side', default: 'none' },

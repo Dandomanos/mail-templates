@@ -11,22 +11,17 @@ const getFirstLangKey = value => {
   return Object.keys(value).filter(x => x != '$')[0]
 }
 
-const debug = require('debug')('app:get-content')
 const getPromoContent = (promoConfig, lang, participate) => {
   const status =
     participate.status === 'winner' || participate.status === 'participant' ? 'OK' : 'Invalid'
   const $pc = path => {
     const prizeId = participate.prizeId
     const prizes = _.get(promoConfig, 'prizes', [])
-
     const prize = _.find(prizes, { id: prizeId })
-
-    debug('prizeId', prizeId, 'prize', prize)
 
     if (prize && prize.promo && prize.promo.template) {
       promoConfig = _.cloneDeep(promoConfig)
       promoConfig.template = Object.assign(promoConfig.template, prize.promo.template)
-      debug('prize template', promoConfig.template)
     }
 
     return translator(_.get(promoConfig, path, ''), lang, 'en')
@@ -58,15 +53,6 @@ const getPromoContent = (promoConfig, lang, participate) => {
   const secondaryButton = secondaryButtonText
     ? `<button class="secondary" href="${secondaryButtonUrl}">${secondaryButtonText}</button>`
     : ''
-  debug('template', template)
-  debug('imageHeader', imageHeader)
-  debug('title', title)
-  debug('content', content)
-  debug('buttonUrl', buttonUrl)
-  debug('secondaryButtonUrl', secondaryButtonUrl)
-  debug('buttonText', buttonText)
-  debug('secondaryButtonText', secondaryButtonText)
-  debug('secondaryButton', secondaryButton)
 
   return {
     imageHeader: imageHeader,
