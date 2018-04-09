@@ -19,7 +19,7 @@ const options = {
 const debug = require('debug')('app:index')
 
 const participateResult = {
-  status: 'not winner',
+  status: 'winner',
   date: '1522999245280',
   prizeId: 273,
   type: 'tier',
@@ -55,4 +55,4 @@ const getTemplate = async (
   // write
   writeFile(mailTemplate.html, templateName)
 }
-getTemplate('staging', 162, 'es', participateResult)
+getTemplate('staging', 455, 'es', participateResult)
