@@ -47,17 +47,17 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
 
 /* *****************      SAMPLE        *********** */
 
-const configuration = {
-  environment: 'staging',
-  promoId: 455,
-  lang: 'es',
-  status: 'winner',
-  // date: '1522999245280',
-  prizeId: 273,
-  // type: 'tier',
-  participationId: 585492,
-  promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
-}
-getTemplate(configuration, 'participate', true)
+// const configuration = {
+//   environment: 'staging',
+//   promoId: 455,
+//   lang: 'es',
+//   status: 'winner',
+//   // date: '1522999245280',
+//   prizeId: 273,
+//   // type: 'tier',
+//   participationId: 585492,
+//   promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
+// }
+// getTemplate(configuration, 'participate', true)
 
-// module.exports = getTemplate
+module.exports = getTemplate
