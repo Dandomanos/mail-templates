@@ -5,10 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "heml develop templates/email.heml --open",
-    "node-build": "DEBUG=app:* babel-node index.js participate --presets es2015,stage-2",
-    "vainilla": "DEBUG=app:* node index.js",
-    "build": "DEBUG=app:* rimraf dist/ && babel ./ --source-maps --out-dir dist/ --ignore ./node_modules,./prettier.config.js,./.babelrc,./package.json,./npm-debug.log,./package-lock.json,./yarn*, --copy-files --presets es2015,stage-2"
+    "build": "DEBUG=app:* node index.js"
   },
   "author": "Dandomanos",
   "license": "ISC",
@@ -21,6 +18,7 @@
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.2",
     "cheerio": "^1.0.0-rc.2",
+    "co": "^4.6.0",
     "debug": "^3.1.0",
     "del": "^3.0.0",
     "eslint": "^4.19.1",
@@ -35,7 +33,6 @@
     "heml": "^1.1.3",
     "lodash": "^4.17.5",
     "mkdirp": "^0.5.1",
-    "prettier": "^1.11.1",
-    "rimraf": "^2.6.2"
+    "prettier": "^1.11.1"
   }
 }

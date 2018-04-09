@@ -6,6 +6,7 @@ const getPromoContent = require('./src/lib/getPromoContent')
 
 const writeFile = require('./src/lib/writeFile')
 const _ = require('lodash')
+const co = require('co')
 
 const hemlOptions = {
   validate: 'soft', // validation levels - 'strict'|'soft'|'none'
@@ -18,21 +19,9 @@ const hemlOptions = {
 }
 const debug = require('debug')('app:index')
 
-const configuration = {
-  environment: 'staging',
-  promoId: 455,
-  lang: 'es',
-  status: 'winner',
-  // date: '1522999245280',
-  prizeId: 273,
-  // type: 'tier',
-  participationId: 585492,
-  promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
-}
-
-const getTemplate = async (config, templateName = 'participate') => {
+const getTemplate = co.wrap(function*(config, templateName = 'participate', save = false) {
   // get configuration
-  const promoConfig = await getConfiguration(config.environment, config.promoId)
+  const promoConfig = yield getConfiguration(config.environment, config.promoId)
   debug('promoConfig loaded', promoConfig)
 
   // Get Promo Style
@@ -48,9 +37,27 @@ const getTemplate = async (config, templateName = 'participate') => {
   debug('templateContent', templateContent)
 
   // Compile email with promoStyle and templateContent
-  const mailTemplate = await heml(styledHtml(_.assign({}, promoStyle, templateContent)), config)
+  const mailTemplate = yield heml(styledHtml(_.assign({}, promoStyle, templateContent)), config)
 
   // write
-  writeFile(mailTemplate.html, templateName)
+  if (save) writeFile(mailTemplate.html, templateName)
+
+  return mailTemplate.html
+})
+
+/* *****************      SAMPLE        *********** */
+
+const configuration = {
+  environment: 'staging',
+  promoId: 455,
+  lang: 'es',
+  status: 'winner',
+  // date: '1522999245280',
+  prizeId: 273,
+  // type: 'tier',
+  participationId: 585492,
+  promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
 }
-getTemplate(configuration)
+getTemplate(configuration, 'participate', true)
+
+// module.exports = getTemplate
