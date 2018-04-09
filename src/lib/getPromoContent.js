@@ -1,4 +1,4 @@
-import _ from 'lodash'
+const _ = require('lodash')
 // aux functions
 const translator = (obj, lang, fbLang) => {
   return _.cloneDeepWith(obj, value => {
@@ -63,4 +63,5 @@ const getPromoContent = (promoConfig, lang, participate) => {
     secondaryButton: secondaryButton,
   }
 }
-export default getPromoContent
+// export default getPromoContent
+module.exports = getPromoContent

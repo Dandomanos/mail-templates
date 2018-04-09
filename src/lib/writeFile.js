@@ -1,7 +1,7 @@
-import cheerio from 'cheerio'
-import del from 'del'
-import mkdirp from 'mkdirp'
-import fs from 'fs'
+const cheerio = require('cheerio')
+const del = require('del')
+const mkdirp = require('mkdirp')
+const fs = require('fs')
 const debug = require('debug')('app:write-file')
 
 // Output folder
@@ -21,4 +21,4 @@ const writeFile = (html, name = 'test') => {
   debug('Writed ' + file)
 }
 
-export default writeFile
+module.exports = writeFile

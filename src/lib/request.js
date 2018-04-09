@@ -1,9 +1,9 @@
-import axios from 'axios'
+const axios = require('axios')
 
 const debug = require('debug')('pt:api')
 
 // Error response wrapper
-export class ApiError extends Error {
+class ApiError extends Error {
   constructor(data, response) {
     if (!data || typeof data !== 'object') data = {}
     if (!data.message) data.message = 'Unkown error'
@@ -20,8 +20,8 @@ export class ApiError extends Error {
 const request = axios.create({
   timeout: 10000,
 })
-export default request
 
+module.exports = request
 // Intercept request start
 // Used for logging and authorization injection
 request.interceptors.request.use(

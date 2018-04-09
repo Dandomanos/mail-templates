@@ -1,5 +1,5 @@
-import environments from './environments'
-import request from './request'
+const environments = require('./environments')
+const request = require('./request')
 
 function getUrl(env) {
   return environments[env].apiPT
@@ -10,4 +10,4 @@ const getConfiguration = function*(env, promoId) {
     url: getUrl(env) + '/configuration/' + promoId,
   })
 }
-export default getConfiguration
+module.exports = getConfiguration

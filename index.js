@@ -1,11 +1,11 @@
-import heml from 'heml'
-import fs from 'fs'
-import getConfiguration from './src/lib/getConfiguration'
-import getPromoStyle from './src/lib/getPromoStyle'
-import getPromoContent from './src/lib/getPromoContent'
+const heml = require('heml')
+const fs = require('fs')
+const getConfiguration = require('./src/lib/getConfiguration')
+const getPromoStyle = require('./src/lib/getPromoStyle')
+const getPromoContent = require('./src/lib/getPromoContent')
 
-import writeFile from './src/lib/writeFile'
-import _ from 'lodash'
+const writeFile = require('./src/lib/writeFile')
+const _ = require('lodash')
 
 const hemlOptions = {
   validate: 'soft', // validation levels - 'strict'|'soft'|'none'
@@ -33,7 +33,7 @@ const configuration = {
 const getTemplate = async (config, templateName = 'participate') => {
   // get configuration
   const promoConfig = await getConfiguration(config.environment, config.promoId)
-  debug('promoConfig loaded')
+  debug('promoConfig loaded', promoConfig)
 
   // Get Promo Style
   const promoStyle = getPromoStyle(promoConfig)

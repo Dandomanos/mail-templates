@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "heml develop templates/email.heml --open",
     "node-build": "DEBUG=app:* babel-node index.js participate --presets es2015,stage-2",
+    "vainilla": "DEBUG=app:* node index.js",
     "build": "DEBUG=app:* rimraf dist/ && babel ./ --source-maps --out-dir dist/ --ignore ./node_modules,./prettier.config.js,./.babelrc,./package.json,./npm-debug.log,./package-lock.json,./yarn*, --copy-files --presets es2015,stage-2"
   },
   "author": "Dandomanos",

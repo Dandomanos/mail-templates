@@ -1,4 +1,4 @@
-import _ from 'lodash'
+const _ = require('lodash')
 const debug = require('debug')('app:promo-style')
 debug.enabled = false
 /* ********************      SCHEMES       ***************** */
@@ -89,4 +89,5 @@ const getPromoStyle = promoConfig => {
   )
 }
 
-export default getPromoStyle
+// export default getPromoStyle
+module.exports = getPromoStyle
