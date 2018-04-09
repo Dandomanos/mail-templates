@@ -26,6 +26,7 @@ const stylesScheme = {
   h1FontSize: { type: 'px', default: 30 },
   primary: { type: 'button', default: primary },
   secondary: { type: 'button', default: secondary },
+  fontFamily: { type: 'string', default: 'Gotham' },
 }
 const schemes = {
   primary: primary,
@@ -56,6 +57,10 @@ const types = {
   side: {
     check: x => ['None', 'Bottom', 'Top', 'Left', 'Right'].includes(x),
     normalize: x => x.charAt(0).toLowerCase() + x.slice(1),
+  },
+  string: {
+    check: x => (x + '').match(/^[a-zA-Z0-9'-]+$/i),
+    normalize: x => x,
   },
 }
 

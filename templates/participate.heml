@@ -10,7 +10,18 @@
         }
     </style>
     <style>
+      @font-face {
+        font-family: '<%= fontFamily %>';
+        src: url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.woff') format('woff'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.ttf') format('truetype'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.otf') format('otf'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+        unicode-range: U+000-5ff; /* Latin glyphs */
+      }
       body {
+        font-family: '<%= fontFamily %>', Sans-Serif;
         background-color: <%= secondaryBackgroundColor %>;
         padding:20px;
         color:<%= fontsColor %>;        
@@ -21,6 +32,7 @@
       }
       h1 {
         font-size:<%= h1FontSize %>;
+        font-family: '<%= fontFamily %>', Sans-Serif;
       }
       block {
         padding:20px;
@@ -29,6 +41,7 @@
       button {
         width:320px;
         padding: 20px 11px;
+        font-family: '<%= fontFamily %>', Sans-Serif;
         background-color: <%= primary.backgroundColor %>;
         border-radius: <%= primary.borderRadius %>;
         border-color: <%= primary.borderColor %>;
