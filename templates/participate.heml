@@ -1,6 +1,14 @@
 <heml>
   <head>
     <subject></subject>
+    <style heml-ignore>
+        .button .button__cell {
+          <%= primary.highlightedBorder!=='none' ? "border-"+ primary.highlightedBorder + ": 10px solid "+primary.borderColor: ''  %>
+        }
+        .button.secondary .button__cell {
+          <%= secondary.highlightedBorder!=='none' ? "border-"+ secondary.highlightedBorder + ": 10px solid "+secondary.borderColor: ''  %>
+        }
+    </style>
     <style>
       body {
         background-color: <%= secondaryBackgroundColor %>;
@@ -21,12 +29,22 @@
       button {
         width:320px;
         padding: 20px 11px;
-        background-color:<%= brandingColor %>;
-        border-radius:10px;
+        background-color: <%= primary.backgroundColor %>;
+        border-radius: <%= primary.borderRadius %>;
+        border-color: <%= primary.borderColor %>;
+        border-width: <%= primary.borderSize %>;
+        color: <%= primary.textColor %>;
+        border: <%= primary.borderSize %> solid <%= primary.borderColor %>;
+        
       }
       button.secondary {
         margin-top:16px;
-        background-color:red;
+        background-color: <%= secondary.backgroundColor %>;
+        border-radius: <%= secondary.borderRadius %>;
+        border-color: <%= secondary.borderColor %>;
+        border-width: <%= secondary.borderSize %>;
+        color: <%= secondary.textColor %>;
+        border: <%= secondary.borderSize %> solid <%= secondary.borderColor %>;
       }
     </style>
   </head>

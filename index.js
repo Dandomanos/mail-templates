@@ -55,4 +55,4 @@ const getTemplate = async (
   // write
   writeFile(mailTemplate.html, templateName)
 }
-getTemplate('staging', 455, 'es', participateResult)
+getTemplate('staging', 162, 'es', participateResult)

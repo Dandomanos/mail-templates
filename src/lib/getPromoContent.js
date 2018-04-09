@@ -16,7 +16,7 @@ const getPromoContent = (promoConfig, lang, participate) => {
   const status =
     participate.status === 'winner' || participate.status === 'participant' ? 'OK' : 'Invalid'
   const $pc = path => {
-    return translator(_.get(promoConfig, path, null), lang, 'en')
+    return translator(_.get(promoConfig, path, ''), lang, 'en')
   }
   const redirectUrl = (template, type) => {
     const active = $pc(`template.${template}.${type}.activeUrl`)
@@ -38,8 +38,8 @@ const getPromoContent = (promoConfig, lang, participate) => {
   const template = `${flow[flow.length - 1]}${status}`
   const title = $pc(`template.${template}.title`)
   const content = $pc(`template.${template}.content`)
-  const buttonText = $pc(`template.${template}.button.text`)
-  const secondaryButtonText = $pc(`template.${template}.secondaryButton.text`)
+  const buttonText = $pc(`template.${template}.button.text`).toUpperCase()
+  const secondaryButtonText = $pc(`template.${template}.secondaryButton.text`).toUpperCase()
   const buttonUrl = redirectUrl(template, 'button') || participate.promoUrl
   const secondaryButtonUrl = redirectUrl(template, 'secondaryButton') || participate.promoUrl
   const secondaryButton = secondaryButtonText

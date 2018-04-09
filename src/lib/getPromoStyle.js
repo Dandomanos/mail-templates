@@ -1,22 +1,36 @@
 import _ from 'lodash'
 const debug = require('debug')('app:promo-style')
-const styles = {
-  brandingColor: { type: 'color', default: '#e91721' },
-  backgroundsColor: { type: 'color', default: '#fff' },
-  secondaryBackgroundColor: { type: 'color', default: '#ebebeb' },
-  fontsColor: { type: 'color', default: '#474747' },
-  fontSize: { type: 'px', default: 16 },
-  h1FontSize: { type: 'px', default: 30 },
-  primary: { type: 'button', default: { backgroundColor: '#e91721' } },
-}
-
-const buttonStyle = {
+/* ********************      SCHEMES       ***************** */
+const primary = {
   highlightedBorder: { type: 'side', default: 'none' },
   backgroundColor: { type: 'color', default: '#e91721' },
   textColor: { type: 'color', default: '#FFFFFF' },
   borderColor: { type: 'color', default: '#bb121a' },
   borderRadius: { type: 'px', default: '5' },
   borderSize: { type: 'px', default: '0' },
+}
+const secondary = {
+  highlightedBorder: { type: 'side', default: 'none' },
+  backgroundColor: { type: 'color', default: '#BABABA' },
+  textColor: { type: 'color', default: '#FDFDFD' },
+  borderColor: { type: 'color', default: '#D1D1D1' },
+  borderRadius: { type: 'px', default: '5' },
+  borderSize: { type: 'px', default: '0' },
+}
+const stylesScheme = {
+  brandingColor: { type: 'color', default: '#e91721' },
+  backgroundsColor: { type: 'color', default: '#fff' },
+  secondaryBackgroundColor: { type: 'color', default: '#ebebeb' },
+  fontsColor: { type: 'color', default: '#474747' },
+  fontSize: { type: 'px', default: 16 },
+  h1FontSize: { type: 'px', default: 30 },
+  primary: { type: 'button', default: primary },
+  secondary: { type: 'button', default: secondary },
+}
+const schemes = {
+  primary: primary,
+  secondary: secondary,
+  stylesScheme: stylesScheme,
 }
 
 const types = {
@@ -30,10 +44,12 @@ const types = {
   },
   button: {
     check: x => typeof x === 'object',
-    normalize: x =>
-      Object.keys(buttonStyle).reduce(
+    normalize: (x, key) =>
+      Object.keys(schemes[key]).reduce(
         (prev, cur) =>
-          _.assign(prev, { [cur]: validateStyle([cur, x[cur]], true) || buttonStyle[cur].default }),
+          _.assign(prev, {
+            [cur]: validateStyle([cur, x[cur]], schemes[key]) || schemes[key][cur].default,
+          }),
         {}
       ),
   },
@@ -43,13 +59,13 @@ const types = {
   },
 }
 
-const validateStyle = ([key, val], isButton = false) => {
-  const scheme = isButton ? buttonStyle[key] : styles[key]
+const validateStyle = ([key, val], nestedScheme) => {
+  const scheme = nestedScheme ? nestedScheme[key] : stylesScheme[key]
   const type = scheme && types[scheme.type]
 
-  debug('scheme', scheme, 'type', type)
+  debug('scheme', scheme, 'type', type, 'key', key)
 
-  return !scheme || !type || !type.check(val) ? null : type.normalize(val)
+  return !scheme || !type || !type.check(val) ? null : type.normalize(val, key)
 }
 
 const getPromoStyle = promoConfig => {
@@ -58,10 +74,13 @@ const getPromoStyle = promoConfig => {
   const promoStyle = _.get(promoConfig, 'template.style', {})
 
   const getValue = key => {
-    return validateStyle([key, promoStyle[key]]) || styles[key].default
+    return validateStyle([key, promoStyle[key]]) || stylesScheme[key].default
   }
 
-  return Object.keys(styles).reduce((prev, cur) => _.assign(prev, { [cur]: getValue(cur) }), {})
+  return Object.keys(stylesScheme).reduce(
+    (prev, cur) => _.assign(prev, { [cur]: getValue(cur) }),
+    {}
+  )
 }
 
 export default getPromoStyle
