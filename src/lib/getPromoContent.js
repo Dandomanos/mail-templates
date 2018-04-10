@@ -61,6 +61,7 @@ const getPromoContent = (promoConfig, lang, participate) => {
     buttonText: buttonText,
     buttonUrl: buttonUrl,
     secondaryButton: secondaryButton,
+    voucher: participate.voucher,
   }
 }
 // export default getPromoContent

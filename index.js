@@ -33,11 +33,14 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
   const styledHtml = _.template(template)
 
   // Get Promo Content
-  const templateContent = getPromoContent(promoConfig, config.lang, hemlOptions)
+  const templateContent = getPromoContent(promoConfig, config.lang, config)
   debug('templateContent', templateContent)
 
   // Compile email with promoStyle and templateContent
-  const mailTemplate = yield heml(styledHtml(_.assign({}, promoStyle, templateContent)), config)
+  const mailTemplate = yield heml(
+    styledHtml(_.assign({}, promoStyle, templateContent)),
+    hemlOptions
+  )
 
   // write
   if (save) writeFile(mailTemplate.html, templateName)
@@ -52,6 +55,7 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
 //   promoId: 455,
 //   lang: 'es',
 //   status: 'winner',
+//   voucher: 'ORX-1903',
 //   // date: '1522999245280',
 //   prizeId: 273,
 //   // type: 'tier',

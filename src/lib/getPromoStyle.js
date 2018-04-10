@@ -21,6 +21,8 @@ const secondary = {
 const stylesScheme = {
   brandingColor: { type: 'color', default: '#e91721' },
   backgroundsColor: { type: 'color', default: '#fff' },
+  borderRadius: { type: 'px', default: 5 },
+  bordersSize: { type: 'px', default: 1 },
   secondaryBackgroundColor: { type: 'color', default: '#ebebeb' },
   fontsColor: { type: 'color', default: '#474747' },
   fontSize: { type: 'px', default: 16 },
@@ -74,6 +76,10 @@ const validateStyle = ([key, val], nestedScheme) => {
   return !scheme || !type || !type.check(val) ? null : type.normalize(val, key)
 }
 
+const multiplyPixel = (value, variable = 1) => {
+  return `${Number(value.substr(0, value.length - 2)) * variable}px`
+}
+
 const getPromoStyle = promoConfig => {
   if (!promoConfig) return {}
 
@@ -83,10 +89,12 @@ const getPromoStyle = promoConfig => {
     return validateStyle([key, promoStyle[key]]) || stylesScheme[key].default
   }
 
-  return Object.keys(stylesScheme).reduce(
+  const style = Object.keys(stylesScheme).reduce(
     (prev, cur) => _.assign(prev, { [cur]: getValue(cur) }),
     {}
   )
+  // Add calculate input border
+  return _.assign(style, { inputBorder: multiplyPixel(style.bordersSize, 2) })
 }
 
 // export default getPromoStyle

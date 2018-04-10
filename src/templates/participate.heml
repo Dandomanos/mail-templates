@@ -8,6 +8,9 @@
         .button.secondary .button__cell {
           <%= secondary.highlightedBorder!=='none' ? "border-"+ secondary.highlightedBorder + ": 10px solid "+secondary.borderColor: ''  %>
         }
+        .voucher .block__cell {
+          border:none;
+        }
     </style>
     <style>
       @font-face {
@@ -19,6 +22,9 @@
         font-weight: normal;
         font-style: normal;
         unicode-range: U+000-5ff; /* Latin glyphs */
+      }
+      * {
+        box-sizing:border-box;
       }
       body {
         font-family: '<%= fontFamily %>', Sans-Serif;
@@ -41,6 +47,7 @@
       button {
         width:320px;
         padding: 20px 11px;
+        box-sizing:border-box;
         font-family: '<%= fontFamily %>', Sans-Serif;
         background-color: <%= primary.backgroundColor %>;
         border-radius: <%= primary.borderRadius %>;
@@ -59,6 +66,19 @@
         color: <%= secondary.textColor %>;
         border: <%= secondary.borderSize %> solid <%= secondary.borderColor %>;
       }
+      .voucher {
+        width:360px;
+        text-align:center;
+        margin:0 auto;
+        box-sizing:border-box;
+      }
+      .voucherP {
+        border:<%= inputBorder %> solid <%= primary.backgroundColor %>;
+        border-radius: <%= borderRadius %>;
+        width:100%;
+        padding: 18px 0px;
+        box-sizing:border-box;
+      }
     </style>
   </head>
   <body>
@@ -67,6 +87,7 @@
       <block>
         <h1><%= title %></h1>
         <p><%= content %></p>
+        <%= voucher ? '<block class="voucher"><p class="voucherP">'+voucher+'</p></block>' : '' %>
         <button href="<%= buttonUrl %>"><%= buttonText %></button>
         <%= secondaryButton %>
       </block>
