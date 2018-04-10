@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const debug = require('debug')('pt:api')
+const debug = require('debug')('app:api')
 
 // Error response wrapper
 class ApiError extends Error {
