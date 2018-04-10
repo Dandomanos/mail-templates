@@ -2,7 +2,7 @@
   "name": "@gigigo/pt-mail-generator",
   "version": "0.0.1",
   "description": "Generate Promotool mail templates",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "DEBUG=app:* node index.js"
@@ -13,6 +13,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1"
+  },
+  "publishConfig": {
+      "registry": "http://registry.gigigoapps.com/"
   },
   "dependencies": {
     "axios": "^0.18.0",
