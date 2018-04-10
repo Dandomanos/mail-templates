@@ -20,6 +20,13 @@ const hemlOptions = {
 const debug = require('debug')('app:index')
 
 const getTemplate = co.wrap(function*(config, templateName = 'participate', save = false) {
+  // prevent errors
+  if (!config.environment) throw new Error('No environment defined')
+  if (!config.promoId) throw new Error('No promoId defined')
+  if (!config.lang) throw new Error('No lang defined')
+  if (!config.status) throw new Error('No status defined')
+  if (!config.promoUrl) throw new Error('No promoUrl defined')
+
   // get configuration
   const promoConfig = yield getConfiguration(config.environment, config.promoId)
   debug('promoConfig loaded', promoConfig)
@@ -50,18 +57,19 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
 
 /* *****************      SAMPLE        *********** */
 
-// const configuration = {
-//   environment: 'staging',
-//   promoId: 455,
-//   lang: 'es',
-//   status: 'winner',
-//   voucher: 'ORX-1903',
-//   // date: '1522999245280',
-//   prizeId: 273,
-//   // type: 'tier',
-//   participationId: 585492,
-//   promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
-// }
-// getTemplate(configuration, 'participate', true)
+const configuration = {
+  environment: 'staging',
+  promoId: 455,
+  lang: 'es',
+  status: 'winner',
+  voucher: 'ORX-1903',
+  // date: '1522999245280',
+  prizeId: 273,
+  // type: 'tier',
+  participationId: 585492,
+  promoUrl: 'https://origin-front-pt.s.orchextra.io/455',
+}
+
+getTemplate(configuration, 'participate', true)
 
 module.exports = getTemplate
