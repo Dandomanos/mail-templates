@@ -36,9 +36,14 @@
         max-width: 700px;
         background-color:<%= backgroundsColor %>;
       }
+      p {
+        width:100%;
+        margin:0;
+      }
       h1 {
         font-size:<%= h1FontSize %>;
         font-family: '<%= fontFamily %>', Sans-Serif;
+        margin-bottom:0;
       }
       block {
         padding:20px;
