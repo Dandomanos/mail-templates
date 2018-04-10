@@ -1,6 +1,6 @@
 {
   "name": "@gigigo/pt-mail-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate Promotool mail templates",
   "main": "./index.js",
   "scripts": {
