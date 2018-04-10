@@ -5,7 +5,7 @@ Create html mails for Promotool templates.
 # Install
 
 ```sh
-$ npm install pt-mail-generator
+$ npm install @gigigo/pt-mail-generator
 ```
 
 # Usage
