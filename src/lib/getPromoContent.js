@@ -11,7 +11,7 @@ const getFirstLangKey = value => {
   return Object.keys(value).filter(x => x != '$')[0]
 }
 
-const getPromoContent = (promoConfig, lang, participate) => {
+const getPromoContent = (promoConfig, lang = 'en', participate) => {
   const status =
     participate.status === 'winner' || participate.status === 'participant' ? 'OK' : 'Invalid'
   const $pc = path => {

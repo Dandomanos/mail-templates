@@ -23,7 +23,6 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
   // prevent errors
   if (!config.environment) throw new Error('No environment defined')
   if (!config.promoId) throw new Error('No promoId defined')
-  if (!config.lang) throw new Error('No lang defined')
   if (!config.status) throw new Error('No status defined')
   if (!config.promoUrl) throw new Error('No promoUrl defined')
 
