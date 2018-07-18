@@ -1,19 +1,16 @@
 {
-  "name": "@gigigo/pt-mail-generator",
-  "version": "0.0.4",
-  "description": "Generate Promotool mail templates",
+  "name": "pt-mail-generator",
+  "version": "0.0.1",
+  "description": "Generate mail templates",
   "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "DEBUG=app:index*,app:Error* node index.js"
+    "test": "jest",
+    "test-dev": "DEBUG=app:index*,app:Error* jest --watch --verbose",
+    "build": "DEBUG=app:index*,app:Error* nodemon src/lib/build.js participate"
   },
   "author": "Dandomanos",
   "license": "ISC",
-  "publishConfig": {
-      "registry": "http://registry.gigigoapps.com/"
-  },
   "dependencies": {
-    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "co": "^4.6.0",
     "debug": "^3.1.0",

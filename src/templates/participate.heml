@@ -3,10 +3,10 @@
     <subject></subject>
     <style heml-ignore>
         .button .button__cell {
-          <%= primary.highlightedBorder!=='none' ? "border-"+ primary.highlightedBorder + ": 10px solid "+primary.borderColor: ''  %>
+          <%= style.primary.highlightedBorder!=='none' ? "border-"+ style.primary.highlightedBorder + ": 10px solid "+style.primary.borderColor: ''  %>
         }
         .button.secondary .button__cell {
-          <%= secondary.highlightedBorder!=='none' ? "border-"+ secondary.highlightedBorder + ": 10px solid "+secondary.borderColor: ''  %>
+          <%= style.secondary.highlightedBorder!=='none' ? "border-"+ style.secondary.highlightedBorder + ": 10px solid "+style.secondary.borderColor: ''  %>
         }
         .voucher .block__cell {
           border:none;
@@ -14,11 +14,11 @@
     </style>
     <style>
       @font-face {
-        font-family: '<%= fontFamily %>';
-        src: url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.woff') format('woff'),
-          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.ttf') format('truetype'),
-          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.otf') format('otf'),
-          url('https://front-pt.orchextra.io/static/fonts/<%= fontFamily %>-Medium.svg') format('svg');
+        font-family: '<%= style.commons.fontFamily %>';
+        src: url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.woff') format('woff'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.ttf') format('truetype'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.otf') format('otf'),
+          url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.svg') format('svg');
         font-weight: normal;
         font-style: normal;
         unicode-range: U+000-5ff; /* Latin glyphs */
@@ -27,22 +27,31 @@
         box-sizing:border-box;
       }
       body {
-        font-family: '<%= fontFamily %>', Sans-Serif;
-        background-color: <%= secondaryBackgroundColor %>;
+        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
+        background-color: <%= style.commons.secondaryBackgroundColor %>;
         padding:20px;
-        color:<%= fontsColor %>;        
+        color:<%= style.commons.fontsColor %>;        
       }
-      container {
+      .container {
         max-width: 700px;
-        background-color:<%= backgroundsColor %>;
+        background-color:<%= style.commons.backgroundsColor %>;
+      }
+      .headerImage {
+        border-bottom: 3px solid red;
+        text-align:center;
+      }
+      .headerImage img {
+        margin:0 auto;
+        width:100%;
+        max-width:700px;
       }
       p {
         width:100%;
         margin:0;
       }
       h1 {
-        font-size:<%= h1FontSize %>;
-        font-family: '<%= fontFamily %>', Sans-Serif;
+        font-size:<%= style.h1.fontSize %>;
+        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
         margin-bottom:0;
       }
       block {
@@ -53,23 +62,23 @@
         width:320px;
         padding: 20px 11px;
         box-sizing:border-box;
-        font-family: '<%= fontFamily %>', Sans-Serif;
-        background-color: <%= primary.backgroundColor %>;
-        border-radius: <%= primary.borderRadius %>;
-        border-color: <%= primary.borderColor %>;
-        border-width: <%= primary.borderSize %>;
-        color: <%= primary.textColor %>;
-        border: <%= primary.borderSize %> solid <%= primary.borderColor %>;
+        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
+        background-color: <%= style.primary.backgroundColor %>;
+        border-radius: <%= style.primary.borderRadius %>;
+        border-color: <%= style.primary.borderColor %>;
+        border-width: <%= style.primary.borderSize %>;
+        color: <%= style.primary.textColor %>;
+        border: <%= style.primary.borderSize %> solid <%= style.primary.borderColor %>;
         
       }
       button.secondary {
         margin-top:16px;
-        background-color: <%= secondary.backgroundColor %>;
-        border-radius: <%= secondary.borderRadius %>;
-        border-color: <%= secondary.borderColor %>;
-        border-width: <%= secondary.borderSize %>;
-        color: <%= secondary.textColor %>;
-        border: <%= secondary.borderSize %> solid <%= secondary.borderColor %>;
+        background-color: <%= style.secondary.backgroundColor %>;
+        border-radius: <%= style.secondary.borderRadius %>;
+        border-color: <%= style.secondary.borderColor %>;
+        border-width: <%= style.secondary.borderSize %>;
+        color: <%= style.secondary.textColor %>;
+        border: <%= style.secondary.borderSize %> solid <%= style.secondary.borderColor %>;
       }
       .voucher {
         width:360px;
@@ -78,8 +87,8 @@
         box-sizing:border-box;
       }
       .voucherP {
-        border:<%= inputBorder %> solid <%= primary.backgroundColor %>;
-        border-radius: <%= borderRadius %>;
+        border:<%= style.input.borderSize %> solid <%= style.input.borderColor %>;
+        border-radius: <%= style.commons.borderRadius %>;
         width:100%;
         padding: 18px 0px;
         box-sizing:border-box;
@@ -88,13 +97,16 @@
   </head>
   <body>
     <container>
-      <img src="<%= imageHeader %>" alt="poro-king">
+    <!-- Header -->
+      <%= content.logoHeader ? '<div class="logoHeader"><img src="' + content.logoHeader + '" alt="" /></div>' : '' %>
+      <%= content.headerImage ? '<div class="headerImage"><img src="' + content.headerImage + '" alt="" /></div>' : '' %>
+      <img src="<%= content.headerImage %>" alt="poro-king">
       <block>
-        <h1><%= title %></h1>
-        <p><%= content %></p>
-        <%= voucher ? '<block class="voucher"><p class="voucherP">'+voucher+'</p></block>' : '' %>
-        <button href="<%= buttonUrl %>"><%= buttonText %></button>
-        <%= secondaryButton %>
+        <h1><%= content.title %></h1>
+        <p><%= content.content %></p>
+        <%= content.voucher ? '<block class="voucher"><p class="voucherP">'+content.voucher+'</p></block>' : '' %>
+        <button href="<%= content.primaryUrl %>"><%= content.buttonText %></button>
+        <%= content.secondaryButton %>
       </block>
     </container>
   </body>

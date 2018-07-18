@@ -1,9 +1,5 @@
 const heml = require('heml')
 const fs = require('fs')
-const getConfiguration = require('./src/lib/getConfiguration')
-const getPromoStyle = require('./src/lib/getPromoStyle')
-const getPromoContent = require('./src/lib/getPromoContent')
-
 const writeFile = require('./src/lib/writeFile')
 const _ = require('lodash')
 const co = require('co')
@@ -32,29 +28,27 @@ const Errors = {
   default: 'Unknow Error',
 }
 
+// Html template file name
+const outputFile = process.argv[2]
+
 function throwError(key, err) {
   error(Errors[key] || Errors.default)
   throw new Error(err)
 }
-const getTemplate = co.wrap(function*(config, templateName = 'participate', save = false) {
+const getTemplate = co.wrap(function*(
+  config,
+  templateName = 'participate',
+  fullObjectReturn = false
+) {
   // Prevent configuration errors
-  if (!config.environment) throwError('noEnviroment', Errors.noEnviroment)
-  if (!config.promoId) throwError('noPromoId', Errors.noPromoId)
-  if (!config.status) throwError('noStatus', Errors.noStatus)
-  if (!config.promoUrl) throwError('noPromoUrl', Errors.noPromoUrl)
-
-  // get configuration
-  let promoConfig
-  try {
-    promoConfig = yield getConfiguration(config.environment, config.promoId)
-    debug('PromoConfiguration LOADED')
-  } catch (err) {
-    throwError('noConfiguration', err)
-  }
+  // if (!config.environment) throwError('noEnviroment', Errors.noEnviroment)
+  // if (!config.promoId) throwError('noPromoId', Errors.noPromoId)
+  // if (!config.status) throwError('noStatus', Errors.noStatus)
+  // if (!config.promoUrl) throwError('noPromoUrl', Errors.noPromoUrl)
 
   // Get Promo Style
-  const promoStyle = getPromoStyle(promoConfig)
-  debug('PromoStyle LOADED')
+  const promoStyle = config.style || {}
+  debug('PromoStyle LOADED', promoStyle)
 
   // Get Promo Template
   let styledHtml
@@ -67,29 +61,42 @@ const getTemplate = co.wrap(function*(config, templateName = 'participate', save
   }
 
   // Get Promo Content
-  const templateContent = getPromoContent(promoConfig, config.lang, config)
-  debug('PromoContent LOADED')
+  // const templateContent = getPromoContent(promoConfig, config.lang, config)
+  // const templateContent = config.content || {}
+  // debug('PromoContent LOADED', templateContent)
 
   // Compile email with promoStyle and templateContent
   let mailTemplate
   try {
-    mailTemplate = yield heml(styledHtml(_.assign({}, promoStyle, templateContent)), hemlOptions)
+    mailTemplate = yield heml(styledHtml(_.assign({}, config)), hemlOptions)
     debug('Html Mail GENERATED')
   } catch (err) {
     throwError('noGenerated', err)
   }
 
   // write
-  if (save) {
+  if (outputFile) {
     try {
-      writeFile(mailTemplate.html, templateName)
+      writeFile(mailTemplate.html, outputFile)
       debug('Static Html SAVED')
     } catch (err) {
       throwError('noSave', err)
     }
   }
 
-  return mailTemplate.html || throwError('noGenerated', Errors.noGenerated)
+  let rObject = {
+    html: mailTemplate.html || throwError('noGenerated', Errors.noGenerated),
+    plain:
+      config.content.plainText ||
+      'If you cannot read this email please check this url: ' + config.content.primaryUrl,
+    subject: config.content.subject,
+  }
+
+  if (!fullObjectReturn) {
+    rObject = mailTemplate.html || throwError('noGenerated', Errors.noGenerated)
+  }
+
+  return rObject
 })
 
 /* *****************      SAMPLE        *********** */
