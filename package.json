@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test-dev": "DEBUG=app:index*,app:Error* jest --watch --verbose",
-    "build": "DEBUG=app:index*,app:Error* nodemon src/lib/build.js participate"
+    "build": "DEBUG=app:index*,app:Error* nodemon src/lib/build.js mail"
   },
   "author": "Dandomanos",
   "license": "ISC",

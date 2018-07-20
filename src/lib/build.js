@@ -54,4 +54,4 @@ const configuration = {
   },
 }
 
-getTemplate(configuration, 'participate', true)
+getTemplate(configuration, 'mail', true)

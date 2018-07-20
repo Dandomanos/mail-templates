@@ -37,11 +37,7 @@ function throwError(key, err) {
   error(Errors[key] || Errors.default)
   throw new Error(err)
 }
-const getTemplate = co.wrap(function*(
-  config,
-  templateName = 'participate',
-  fullObjectReturn = false
-) {
+const getTemplate = co.wrap(function*(config, templateName = 'mail', fullObjectReturn = false) {
   // Prevent configuration errors
   // if (!config.environment) throwError('noEnviroment', Errors.noEnviroment)
   // if (!config.promoId) throwError('noPromoId', Errors.noPromoId)
