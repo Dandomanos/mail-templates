@@ -1,5 +1,5 @@
 {
-  "name": "pt-mail-generator",
+  "name": "mail-generator",
   "version": "0.0.1",
   "description": "Generate mail templates",
   "main": "./index.js",
