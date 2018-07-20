@@ -1,8 +1,10 @@
 const heml = require('heml')
 const fs = require('fs')
-const writeFile = require('./src/lib/writeFile')
+const writeFile = require('./src/lib/save/writeFile')
 const _ = require('lodash')
 const co = require('co')
+
+const getStyle = require('./src/lib/style/getStyle')
 
 const hemlOptions = {
   validate: 'soft', // validation levels - 'strict'|'soft'|'none'
@@ -47,7 +49,7 @@ const getTemplate = co.wrap(function*(
   // if (!config.promoUrl) throwError('noPromoUrl', Errors.noPromoUrl)
 
   // Get Promo Style
-  const promoStyle = config.style || {}
+  const promoStyle = getStyle(config.style) || {}
   debug('PromoStyle LOADED', promoStyle)
 
   // Get Promo Template
@@ -68,7 +70,7 @@ const getTemplate = co.wrap(function*(
   // Compile email with promoStyle and templateContent
   let mailTemplate
   try {
-    mailTemplate = yield heml(styledHtml(_.assign({}, config)), hemlOptions)
+    mailTemplate = yield heml(styledHtml(_.assign({}, config, promoStyle)), hemlOptions)
     debug('Html Mail GENERATED')
   } catch (err) {
     throwError('noGenerated', err)

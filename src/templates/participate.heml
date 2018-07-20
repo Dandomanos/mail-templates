@@ -33,17 +33,17 @@
         color:<%= style.commons.fontsColor %>;        
       }
       .container {
-        max-width: 700px;
+        max-width: <%= style.commons.width %>px;
         background-color:<%= style.commons.backgroundsColor %>;
       }
       .headerImage {
-        border-bottom: 3px solid red;
-        text-align:center;
+        text-align:center;       
+        <%= headerStyle %>
       }
       .headerImage img {
         margin:0 auto;
         width:100%;
-        max-width:700px;
+        max-width:<%= style.commons.width %>px;
       }
       p {
         width:100%;
@@ -55,7 +55,7 @@
         margin-bottom:0;
       }
       block {
-        padding:20px;
+        <%= blockStyle %>
         text-align:center;
       }
       button {
@@ -100,7 +100,6 @@
     <!-- Header -->
       <%= content.logoHeader ? '<div class="logoHeader"><img src="' + content.logoHeader + '" alt="" /></div>' : '' %>
       <%= content.headerImage ? '<div class="headerImage"><img src="' + content.headerImage + '" alt="" /></div>' : '' %>
-      <img src="<%= content.headerImage %>" alt="poro-king">
       <block>
         <h1><%= content.title %></h1>
         <p><%= content.content %></p>
