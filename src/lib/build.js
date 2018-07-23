@@ -17,8 +17,8 @@ const configuration = {
     commons: {
       fontFamily: 'Montserrat',
       secureFont: 'timEs',
-      fontsColor: '#FF0000',
-      backgroundsColor: '#FFAAFF',
+      fontColor: '#FF0000',
+      backgroundColor: '#FFAAFF',
       secondaryBackgroundColor: '#00DDFF',
       borderRadius: 10,
       width: 500,

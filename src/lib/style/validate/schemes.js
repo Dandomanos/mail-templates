@@ -89,8 +89,8 @@ const paragraph = {
 const commons = {
   fontFamily: { type: 'string', default: 'Gotham' },
   secureFont: { type: 'secureFont', default: 'Arial, Helvetica' },
-  fontsColor: { type: 'color', default: '#474747' },
-  backgroundsColor: { type: 'color', default: '#FFFFFF' },
+  fontColor: { type: 'color', default: '#474747' },
+  backgroundColor: { type: 'color', default: '#FFFFFF' },
   secondaryBackgroundColor: { type: 'color', default: '#dedede' },
   borderRadius: { type: 'px', default: '5px' },
   width: { type: 'px', default: '700px' },

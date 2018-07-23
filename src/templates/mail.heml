@@ -30,11 +30,11 @@
         font-family: <%= style.commons.secureFont %>,sans-Serif;
         background-color: <%= style.commons.secondaryBackgroundColor %>;
         padding:20px;
-        color:<%= style.commons.fontsColor %>;        
+        color:<%= style.commons.fontColor %>;        
       }
       .container {
         max-width: <%= style.commons.width %>;
-        background-color:<%= style.commons.backgroundsColor %>;
+        background-color:<%= style.commons.backgroundColor %>;
       }
       .headerImage {
         text-align:center;       

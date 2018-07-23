@@ -12,4 +12,7 @@ module.exports = {
     // TODO: Remove rules above this
     eqeqeq: 0,
   },
+  env: {
+    jest: true,
+  },
 }

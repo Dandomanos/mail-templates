@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const isColor = require('is-color')
 const schemes = require('./schemes')
 
 const multiplyPixel = (value, variable = 1) => {
@@ -19,12 +20,12 @@ const validateStyle = ([key, val], nestedScheme) => {
 const getDefaultValue = defaultValue => {
   return _.isObject(defaultValue)
     ? Object.keys(defaultValue).reduce(
-        (prev, cur) =>
-          _.assign(prev, {
-            [cur]: defaultValue[cur].default,
-          }),
-        {}
-      )
+      (prev, cur) =>
+        _.assign(prev, {
+          [cur]: defaultValue[cur].default,
+        }),
+      {}
+    )
     : defaultValue
 }
 
@@ -48,14 +49,42 @@ const validBorderStyle = [
   'initial',
 ]
 const secureFonts = {
-  arial: 'Arial, Helvetica, sans-serif',
-  arialBlack: '"Arial Black", Gadget, sans-serif',
+  // Serif Fonts
+  georgia: 'Georgia, serif',
+  palatino: '"Palatino Linotype", "Book Antiqua", Palatino, serif',
+  palatinolinotype: '"Palatino Linotype", "Book Antiqua", Palatino, serif',
+  'palatino linotype': '"Palatino Linotype", "Book Antiqua", Palatino, serif',
   times: '"Times New Roman", Times, serif',
+  timesnewroman: '"Times New Roman", Times, serif',
+  'times new roman': '"Times New Roman", Times, serif',
+  // Sans-Serif Fonts
+  arial: 'Arial, Helvetica, sans-serif',
+  arialblack: '"Arial Black", Gadget, sans-serif',
+  comic: '"Comic Sans MS", cursive, sans-serif',
+  comicsans: '"Comic Sans MS", cursive, sans-serif',
+  'comic sans': '"Comic Sans MS", cursive, sans-serif',
+  impact: 'Impact, Charcoal, sans-serif',
+  lucidasans: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+  lucidasansunicode: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+  'lucida sans': '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+  'lucida sans unicode': '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+  tahoma: 'Tahoma, Geneva, sans-serif',
+  trebuchet: '"Trebuchet MS", Helvetica, sans-serif',
+  trebuchetms: '"Trebuchet MS", Helvetica, sans-serif',
+  'trebuchet ms': '"Trebuchet MS", Helvetica, sans-serif',
+  verdana: 'Verdana, Geneva, sans-serif',
+  // Monospace Fonts
+  courier: '"Courier New", Courier, monospace',
+  couriernew: '"Courier New", Courier, monospace',
+  'courier new': '"Courier New", Courier, monospace',
+  lucida: '"Lucida Console", Monaco, monospace',
+  lucidaconsole: '"Lucida Console", Monaco, monospace',
+  'lucida console': '"Lucida Console", Monaco, monospace',
 }
 
 const types = {
   color: {
-    check: x => (x + '').match(/^#[0-9a-f]{6}$/i),
+    check: x => isColor(x),
     normalize: x => x,
   },
   px: {
@@ -99,8 +128,7 @@ const types = {
   },
   secureFont: {
     check: x => secureFonts[x.toLowerCase()] !== undefined,
-    normalize: x =>
-      console.log('secure', secureFonts[x.toLowerCase()]) && secureFonts[x.toLowerCase()],
+    normalize: x => secureFonts[x.toLowerCase()],
   },
 }
 
