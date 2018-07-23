@@ -48,6 +48,8 @@ const getTemplate = co.wrap(function*(config, templateName = 'mail', fullObjectR
   const promoStyle = getStyle(config.style) || {}
   debug('PromoStyle LOADED', promoStyle)
 
+  config.style = { ...config.style, ...promoStyle }
+
   // Get Promo Template
   let styledHtml
   try {
@@ -66,7 +68,7 @@ const getTemplate = co.wrap(function*(config, templateName = 'mail', fullObjectR
   // Compile email with promoStyle and templateContent
   let mailTemplate
   try {
-    mailTemplate = yield heml(styledHtml(_.assign({}, config, promoStyle)), hemlOptions)
+    mailTemplate = yield heml(styledHtml(_.assign({}, config)), hemlOptions)
     debug('Html Mail GENERATED')
   } catch (err) {
     throwError('noGenerated', err)

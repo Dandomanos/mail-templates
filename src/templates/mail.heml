@@ -13,7 +13,7 @@
         }
     </style>
     <style>
-      @font-face {
+      /* @font-face {
         font-family: '<%= style.commons.fontFamily %>';
         src: url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.woff') format('woff'),
           url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.ttf') format('truetype'),
@@ -21,29 +21,29 @@
           url('https://front-pt.orchextra.io/static/fonts/<%= style.commons.fontFamily %>-Medium.svg') format('svg');
         font-weight: normal;
         font-style: normal;
-        unicode-range: U+000-5ff; /* Latin glyphs */
-      }
+        unicode-range: U+000-5ff;
+      } */
       * {
         box-sizing:border-box;
       }
       body {
-        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
+        font-family: <%= style.commons.secureFont %>,sans-Serif;
         background-color: <%= style.commons.secondaryBackgroundColor %>;
         padding:20px;
         color:<%= style.commons.fontsColor %>;        
       }
       .container {
-        max-width: <%= style.commons.width %>px;
+        max-width: <%= style.commons.width %>;
         background-color:<%= style.commons.backgroundsColor %>;
       }
       .headerImage {
         text-align:center;       
-        <%= headerStyle %>
+        <%= style.headerStyle %>
       }
       .headerImage img {
         margin:0 auto;
         width:100%;
-        max-width:<%= style.commons.width %>px;
+        max-width:<%= style.commons.width %>;
       }
       p {
         width:100%;
@@ -51,18 +51,18 @@
       }
       h1 {
         font-size:<%= style.h1.fontSize %>;
-        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
+        /* font-family: '<%= style.commons.fontFamily %>', Sans-Serif; */
         margin-bottom:0;
       }
       block {
-        <%= blockStyle %>
+        <%= style.blockStyle %>
         text-align:center;
       }
       button {
         width:320px;
         padding: 20px 11px;
         box-sizing:border-box;
-        font-family: '<%= style.commons.fontFamily %>', Sans-Serif;
+        /* font-family: '<%= style.commons.fontFamily %>', Sans-Serif; */
         background-color: <%= style.primary.backgroundColor %>;
         border-radius: <%= style.primary.borderRadius %>;
         border-color: <%= style.primary.borderColor %>;

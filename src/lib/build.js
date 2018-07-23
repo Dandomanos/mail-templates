@@ -15,7 +15,8 @@ const configuration = {
   },
   style: {
     commons: {
-      fontFamily: 'Bree',
+      fontFamily: 'Montserrat',
+      secureFont: 'timEs',
       fontsColor: '#FF0000',
       backgroundsColor: '#FFAAFF',
       secondaryBackgroundColor: '#00DDFF',

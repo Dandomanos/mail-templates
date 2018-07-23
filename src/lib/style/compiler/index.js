@@ -5,6 +5,7 @@ const getCompiledStyle = (style = {}) => {
   return {
     headerStyle: getBasicStyles(style, 'header'),
     blockStyle: getBasicStyles(style, 'block'),
+    commons: style.commons,
   }
 }
 

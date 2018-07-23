@@ -47,6 +47,11 @@ const validBorderStyle = [
   'inherit',
   'initial',
 ]
+const secureFonts = {
+  arial: 'Arial, Helvetica, sans-serif',
+  arialBlack: '"Arial Black", Gadget, sans-serif',
+  times: '"Times New Roman", Times, serif',
+}
 
 const types = {
   color: {
@@ -91,6 +96,11 @@ const types = {
   string: {
     check: x => typeof x === 'string' && (x + '').match(/^[a-zA-Z0-9'-]+$/i),
     normalize: x => x,
+  },
+  secureFont: {
+    check: x => secureFonts[x.toLowerCase()] !== undefined,
+    normalize: x =>
+      console.log('secure', secureFonts[x.toLowerCase()]) && secureFonts[x.toLowerCase()],
   },
 }
 
