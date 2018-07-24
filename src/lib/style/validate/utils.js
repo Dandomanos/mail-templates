@@ -38,7 +38,7 @@ const getStyleValue = (obj, key) => {
 const checkFromList = (list = [], isObject = false) => {
   return {
     check: x => x && (isObject ? list[x.toLowerCase()] !== undefined : list.includes(String(x).toLowerCase())),
-    normalize: x => String(x).toLowerCase()
+    normalize: x => isObject ? list[x.toLowerCase()] : String(x).toLowerCase()
   }
 }
 
