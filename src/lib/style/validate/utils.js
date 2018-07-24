@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const isColor = require('is-color')
 const schemes = require('./schemes')
+const $v = require('./validations')
 
 const multiplyPixel = (value, variable = 1) => {
   const sizeAsString = _.isNumber(value) ? String(value) : value.substr(0, value.length - 2)
@@ -33,66 +34,12 @@ const getStyleValue = (obj, key) => {
   return validateStyle([key, obj[key]])
 }
 
-const validBorderStyle = [
-  'solid',
-  'dashed',
-  'dotted',
-  'double',
-  'groove',
-  'hidden',
-  'inset',
-  'none',
-  'outset',
-  'ridge',
-  'unset',
-  'inherit',
-  'initial',
-]
-const secureFonts = {
-  // Serif Fonts
-  georgia: 'Georgia, serif',
-  palatino: 'Palatino, "Palatino Linotype", "Book Antiqua", serif',
-  palatinolinotype: '"Palatino Linotype", "Book Antiqua", Palatino, serif',
-  'palatino linotype': '"Palatino Linotype", "Book Antiqua", Palatino, serif',
-  times: 'Times, "Times New Roman", serif',
-  timesnewroman: '"Times New Roman", Times, serif',
-  'times new roman': '"Times New Roman", Times, serif',
-  // Sans-Serif Fonts
-  arial: 'Arial, Helvetica, sans-serif',
-  arialblack: '"Arial Black", Gadget, sans-serif',
-  arialnarrow: '"Arial Narrow", sans-serif',
-  'arial narrow': '"Arial Narrow", sans-serif',
-  comic: '"Comic Sans MS", cursive, sans-serif',
-  comicsans: '"Comic Sans MS", cursive, sans-serif',
-  'comic sans': '"Comic Sans MS", cursive, sans-serif',
-  copperplate: 'Copperplate, Copperplate Gothic Light, sans-serif',
-  copperplategothic: 'Copperplate Gothic Light, Copperplate, sans-serif',
-  copperplategothiclight: 'Copperplate Gothic Light, Copperplate, sans-serif',
-  'copperplate gothic light': 'Copperplate Gothic Light, Copperplate, sans-serif',
-  'copperplate gothic': 'Copperplate Gothic Light, Copperplate, sans-serif',
-  gillsans: 'Gill Sans, Gill Sans MT, sans-serif',
-  'gill sans': 'Gill Sans, Gill Sans MT, sans-serif',
-  impact: 'Impact, Charcoal, sans-serif',
-  lucidasans: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-  lucidasansunicode: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-  'lucida sans': '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-  'lucida sans unicode': '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-  tahoma: 'Tahoma, Geneva, sans-serif',
-  trebuchet: '"Trebuchet MS", Helvetica, sans-serif',
-  trebuchetms: '"Trebuchet MS", Helvetica, sans-serif',
-  'trebuchet ms': '"Trebuchet MS", Helvetica, sans-serif',
-  verdana: 'Verdana, Geneva, sans-serif',
-  helvetica: 'Helvetica, Arial, Verdana, sans-serif',
-  century: 'Century Gothic, sans-serif',
-  centurygothic: 'Century Gothic, sans-serif',
-  'century gothic': 'Century Gothic, sans-serif',
-  // Monospace Fonts
-  courier: 'Courier, "Courier New", monospace',
-  couriernew: '"Courier New", Courier, monospace',
-  'courier new': '"Courier New", Courier, monospace',
-  lucida: '"Lucida Console", Monaco, monospace',
-  lucidaconsole: '"Lucida Console", Monaco, monospace',
-  'lucida console': '"Lucida Console", Monaco, monospace',
+
+const checkFromList = (list = [], isObject = false) => {
+  return {
+    check: x => x && (isObject ? list[x.toLowerCase()] !== undefined : list.includes(String(x).toLowerCase())),
+    normalize: x => String(x).toLowerCase()
+  }
 }
 
 const types = {
@@ -119,29 +66,19 @@ const types = {
     check: x => ['None', 'Bottom', 'Top', 'Left', 'Right'].includes(x),
     normalize: x => x.charAt(0).toLowerCase() + x.slice(1),
   },
-  align: {
-    check: x => ['left', 'middle', 'right'].includes(x),
-    normalize: x => (x == 'middle' ? 'center' : x),
-  },
+  align: checkFromList($v.textAlign),
+  textTransform: checkFromList($v.textTransform),
+  fontWeight: checkFromList($v.fontWeight),
+  borderStyle: checkFromList($v.borderStyle),
+  secureFont: checkFromList($v.secureFonts, true),
+  textDecoration: checkFromList($v.textDecoration),
   boolean: {
     check: x => typeof x === 'boolean',
     normalize: x => x,
   },
-  weight: {
-    check: x => ['Bold', 'Lighter', 'Normal', 'Bolder'].includes(x),
-    normalize: x => x.toLowerCase(),
-  },
-  borderStyle: {
-    check: x => x && validBorderStyle.includes(x.toLowerCase()),
-    normalize: x => x.toLowerCase(),
-  },
   string: {
     check: x => typeof x === 'string' && (x + '').match(/^[a-zA-Z0-9'-]+$/i),
     normalize: x => x,
-  },
-  secureFont: {
-    check: x => secureFonts[x.toLowerCase()] !== undefined,
-    normalize: x => secureFonts[x.toLowerCase()],
   },
 }
 

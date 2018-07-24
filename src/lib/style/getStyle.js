@@ -6,9 +6,6 @@ let validatedStyle
 const getStyle = style => {
   validatedStyle = validate.getValidatedStyle(style)
 
-  console.log('validatedStyle', validatedStyle)
-  console.log('compiledStyle', compiler.getCompiledStyle(validatedStyle))
-
   return Object.assign(compiler.getCompiledStyle(validatedStyle))
 }
 

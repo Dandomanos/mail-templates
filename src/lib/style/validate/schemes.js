@@ -66,7 +66,7 @@ const h1 = {
     default: 'center',
   },
   fontWeight: {
-    type: 'weight',
+    type: 'fontWeight',
     default: 'bold',
   },
   fontColor: {
@@ -81,7 +81,7 @@ const paragraph = {
     default: 'center',
   },
   fontWeight: {
-    type: 'weight',
+    type: 'fontWeight',
     default: 'bold',
   },
 }
@@ -112,6 +112,7 @@ const borders = {
   borderBottomColor: { type: 'color', default: null },
   borderBottomSize: { type: 'px', default: null },
   borderBottomStyle: { type: 'borderStyle', default: null },
+  borderRadius: { type: 'px', default: '0px' }
 }
 const paddings = {
   padding: { type: 'px', default: '0px' },
@@ -128,7 +129,17 @@ const margins = {
   marginBottom: { type: 'px', default: null },
 }
 
-const basicStyles = { ...borders, ...paddings, ...margins }
+const basics = {
+  backgroundColor: { type: 'color', default: null },
+  color: { type: 'color', default: null },
+  textDecoration: { type: 'textDecoration', default: 'none' },
+  textTransform: { type: 'textTransform', default: 'none' },
+  textAlign: { type: 'align', default: null },
+  secureFont: { type: 'secureFont', default: null },
+  fontWeight: { type: 'fontWeight', default: null }
+}
+
+const basicStyles = { ...basics, ...borders, ...paddings, ...margins }
 const header = { ...basicStyles }
 const block = { ...basicStyles }
 
