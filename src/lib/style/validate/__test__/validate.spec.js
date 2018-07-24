@@ -54,7 +54,7 @@ describe('validate styles', () => {
     //  SECURE-FONT
     expect(invalid.commons.secureFont).toBe(schemes.commons.secureFont.default)
     expect(defaultValidated.commons.secureFont).toBe(schemes.commons.secureFont.default)
-    expect(build1.commons.secureFont).toBe('"Times New Roman", Times, serif')
+    expect(build1.commons.secureFont).toBe('Times, "Times New Roman", serif')
     expect(build2.commons.secureFont).toBe('"Arial Black", Gadget, sans-serif')
     expect(build3.commons.secureFont).toBe('Arial, Helvetica, sans-serif')
 
