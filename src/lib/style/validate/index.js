@@ -1,4 +1,4 @@
-const schemes = require('./schemes')
+const schemes = require('./schemes/schemes')
 const utils = require('./utils')
 const _ = require('lodash')
 

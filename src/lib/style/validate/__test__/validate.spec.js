@@ -1,5 +1,5 @@
 const validate = require('./../index.js')
-const schemes = require('./../schemes')
+const schemes = require('./../schemes/schemes')
 
 const BUILD_1 = {
   commons: {

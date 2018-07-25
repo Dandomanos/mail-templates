@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const isColor = require('is-color')
-const schemes = require('./schemes')
-const $v = require('./validations')
+const schemes = require('./schemes/schemes')
+const $v = require('./schemes/validations')
 
 const multiplyPixel = (value, variable = 1) => {
   const sizeAsString = _.isNumber(value) ? String(value) : value.substr(0, value.length - 2)
