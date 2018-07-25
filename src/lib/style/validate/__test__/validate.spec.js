@@ -167,4 +167,9 @@ describe('validate styles', () => {
     checkStyle('header', 'backgroundColor')
     checkStyle('header', 'secureFont', '', 'default', ['"Comic Sans MS", cursive, sans-serif', '"Trebuchet MS", Helvetica, sans-serif', '"Courier New", Courier, monospace'])
   })
+
+  it('should have different default value for components', () => {
+    expect(defaultValidated.header.padding).toBe('0px')
+    expect(defaultValidated.block.padding).toBe('20px')
+  })
 })

@@ -1,10 +1,6 @@
 const basicStyles = require('./basicStyles')
 /* ********************      SCHEMES       ***************** */
-const primary = {
-  highlightedBorder: {
-    type: 'side',
-    default: 'none',
-  },
+const defaultPrimaryButton = {
   backgroundColor: {
     type: 'color',
     default: '#e91721',
@@ -26,7 +22,7 @@ const primary = {
     default: '0px',
   },
 }
-const secondary = {
+const defaultSecondaryButton = {
   highlightedBorder: {
     type: 'side',
     default: 'none',
@@ -99,6 +95,9 @@ const commons = {
 const header = { ...basicStyles }
 const defaultBlock = { padding: { type: 'px', default: '20px' } }
 const block = { ...basicStyles, ...defaultBlock }
+const primaryButton = { ...basicStyles, ...defaultPrimaryButton }
+const secondaryButton = { ...basicStyles, ...defaultSecondaryButton }
+
 
 const stylesScheme = {
   commons: {
@@ -113,13 +112,13 @@ const stylesScheme = {
     type: 'object',
     default: block,
   },
-  primary: {
+  primaryButton: {
     type: 'object',
-    default: primary,
+    default: primaryButton,
   },
-  secondary: {
+  secondaryButton: {
     type: 'object',
-    default: secondary,
+    default: secondaryButton,
   },
   paragraph: {
     type: 'object',
@@ -143,8 +142,8 @@ const schemes = {
   commons,
   header,
   block,
-  primary,
-  secondary,
+  primaryButton,
+  secondaryButton,
   stylesScheme,
   h1,
   paragraph,

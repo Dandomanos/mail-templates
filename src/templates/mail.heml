@@ -2,12 +2,6 @@
   <head>
     <subject></subject>
     <style heml-ignore>
-        .button .button__cell {
-          <%= style.primary.highlightedBorder!=='none' ? "border-"+ style.primary.highlightedBorder + ": 10px solid "+style.primary.borderColor: ''  %>
-        }
-        .button.secondary .button__cell {
-          <%= style.secondary.highlightedBorder!=='none' ? "border-"+ style.secondary.highlightedBorder + ": 10px solid "+style.secondary.borderColor: ''  %>
-        }
         .voucher .block__cell {
           border:none;
         }
@@ -63,22 +57,22 @@
         padding: 20px 11px;
         box-sizing:border-box;
         /* font-family: '<%= style.commons.fontFamily %>', Sans-Serif; */
-        background-color: <%= style.primary.backgroundColor %>;
-        border-radius: <%= style.primary.borderRadius %>;
-        border-color: <%= style.primary.borderColor %>;
-        border-width: <%= style.primary.borderSize %>;
-        color: <%= style.primary.textColor %>;
-        border: <%= style.primary.borderSize %> solid <%= style.primary.borderColor %>;
+        background-color: <%= style.primaryButton.backgroundColor %>;
+        border-radius: <%= style.primaryButton.borderRadius %>;
+        border-color: <%= style.primaryButton.borderColor %>;
+        border-width: <%= style.primaryButton.borderSize %>;
+        color: <%= style.primaryButton.textColor %>;
+        border: <%= style.primaryButton.borderSize %> solid <%= style.primaryButton.borderColor %>;
         
       }
       button.secondary {
         margin-top:16px;
-        background-color: <%= style.secondary.backgroundColor %>;
-        border-radius: <%= style.secondary.borderRadius %>;
-        border-color: <%= style.secondary.borderColor %>;
-        border-width: <%= style.secondary.borderSize %>;
-        color: <%= style.secondary.textColor %>;
-        border: <%= style.secondary.borderSize %> solid <%= style.secondary.borderColor %>;
+        background-color: <%= style.secondaryButton.backgroundColor %>;
+        border-radius: <%= style.secondaryButton.borderRadius %>;
+        border-color: <%= style.secondaryButton.borderColor %>;
+        border-width: <%= style.secondaryButton.borderSize %>;
+        color: <%= style.secondaryButton.textColor %>;
+        border: <%= style.secondaryButton.borderSize %> solid <%= style.secondaryButton.borderColor %>;
       }
       .voucher {
         width:360px;

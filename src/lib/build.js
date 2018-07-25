@@ -43,8 +43,8 @@ const configuration = {
       borderColor: '#AA0000',
       borderSize: 5,
     },
-    primary: {},
-    secondary: {},
+    primaryButton: {},
+    secondaryButton: {},
     h1: {
       fontSize: 20,
     },
