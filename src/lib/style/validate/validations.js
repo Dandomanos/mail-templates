@@ -65,6 +65,7 @@ const textAlign = ['center', 'end', 'inherit', 'initial', 'justify', 'left', 'ri
 const numbers = [...Array(9).keys()].map(item => ((item + 1) * 100).toString())
 const fontWeight = numbers.concat(['bold', 'bolder', 'inherit', 'initial', 'lighter', 'normal', 'unset'])
 const textDecoration = ['inherit', 'initial', 'line-through', 'none', 'overline', 'underline', 'unset']
+const textDecorationStyle = ['dashed', 'dotted', 'double', 'inherit', 'initial', 'solid', 'unset', 'wavy']
 
 module.exports = {
   secureFonts,
@@ -72,5 +73,6 @@ module.exports = {
   textAlign,
   fontWeight,
   textTransform,
-  textDecoration
+  textDecoration,
+  textDecorationStyle
 }

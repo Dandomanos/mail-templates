@@ -23,6 +23,10 @@ const BUILD_1 = {
     textAlign: 'START',
     textTransform: 'None',
     textDecoration: 'overline',
+    textDecorationStyle: 'dotted',
+    color: 'olive',
+    backgroundColor: 'purple',
+    secureFont: 'coMic sAns',
   }
 }
 const BUILD_2 = {
@@ -47,6 +51,10 @@ const BUILD_2 = {
     textAlign: 'RiGhT',
     textTransform: 'LowerCaSe',
     textDecoration: 'noNe',
+    textDecorationStyle: 'wavy',
+    color: 'hsla(123, 45%, 67%, 0.4)',
+    backgroundColor: '#EEFFEE',
+    secureFont: 'TREbuCHETms',
   }
 }
 const BUILD_3 = {
@@ -71,6 +79,10 @@ const BUILD_3 = {
     textAlign: 'centeR',
     textTransform: 'uPPerCaSE',
     textDecoration: 'UNderLine',
+    textDecorationStyle: 'double',
+    color: 'rgb(128,33,21)',
+    backgroundColor: 'rgba(23,12,32,0.2)',
+    secureFont: 'couriernew',
   }
 }
 const INVALID = {
@@ -93,6 +105,10 @@ const INVALID = {
     textAlign: 'middle',
     textTransform: 'rotate',
     textDecoration: 'dandomanos-art',
+    textDecorationStyle: 'icon',
+    color: 'dandocolor',
+    backgroundColor: 'rgba(23,23,23)',
+    secureFont: 'GOTHAM',
   }
 }
 const DEFAULT = {
@@ -103,137 +119,52 @@ const build1 = validate.getValidatedStyle(BUILD_1)
 const build2 = validate.getValidatedStyle(BUILD_2)
 const build3 = validate.getValidatedStyle(BUILD_3)
 
+const checkStyle = (element = 'commons', style = 'fontColor', concat = '', type = 'default', values = []) => {
+  // FONT-COLOR
+  expect(invalid[element][style]).toBe(schemes[element][style].default)
+  expect(defaultValidated[element][style]).toBe(schemes[element][style].default)
+  expect(build1[element][style]).toBe(getValue(values[0] || `${BUILD_1[element][style]}${concat}`, type))
+  expect(build2[element][style]).toBe(getValue(values[1] || `${BUILD_2[element][style]}${concat}`, type))
+  expect(build3[element][style]).toBe(getValue(values[2] || `${BUILD_3[element][style]}${concat}`, type))
+}
+
+const getValue = (string = '', type = 'default') => {
+  const transform = {
+    lowercase: string.toLowerCase(),
+    casted: String(string),
+    normal: string,
+    default: string
+  }
+  return transform[type]
+}
+
 describe('validate styles', () => {
   it('should validate common styles', () => {
-    // TO DO => ADD GOOGLE FONTS AND CUSTOM FONTS(URL, FORMATS)
-
-    //  SECURE-FONT
-    expect(invalid.commons.secureFont).toBe(schemes.commons.secureFont.default)
-    expect(defaultValidated.commons.secureFont).toBe(schemes.commons.secureFont.default)
-    expect(build1.commons.secureFont).toBe('Times, "Times New Roman", serif')
-    expect(build2.commons.secureFont).toBe('"Arial Black", Gadget, sans-serif')
-    expect(build3.commons.secureFont).toBe('Arial, Helvetica, sans-serif')
-
-    // FONT-COLOR
-    expect(invalid.commons.fontColor).toBe(schemes.commons.fontColor.default)
-    expect(defaultValidated.commons.fontColor).toBe(schemes.commons.fontColor.default)
-    expect(build1.commons.fontColor).toBe(BUILD_1.commons.fontColor)
-    expect(build2.commons.fontColor).toBe(BUILD_2.commons.fontColor)
-    expect(build3.commons.fontColor).toBe(BUILD_3.commons.fontColor)
-
-    // BACKGROUND-COLOR
-    expect(invalid.commons.backgroundColor).toBe(schemes.commons.backgroundColor.default)
-    expect(defaultValidated.commons.backgroundColor).toBe(schemes.commons.backgroundColor.default)
-    expect(build1.commons.backgroundColor).toBe(BUILD_1.commons.backgroundColor)
-    expect(build2.commons.backgroundColor).toBe(BUILD_2.commons.backgroundColor)
-    expect(build3.commons.backgroundColor).toBe(BUILD_3.commons.backgroundColor)
-
-    // SECONDARY-BACKGROUND-COLOR
-    expect(invalid.commons.secondaryBackgroundColor).toBe(schemes.commons.secondaryBackgroundColor.default)
-    expect(defaultValidated.commons.secondaryBackgroundColor).toBe(schemes.commons.secondaryBackgroundColor.default)
-    expect(build1.commons.secondaryBackgroundColor).toBe(BUILD_1.commons.secondaryBackgroundColor)
-    expect(build2.commons.secondaryBackgroundColor).toBe(BUILD_2.commons.secondaryBackgroundColor)
-    expect(build3.commons.secondaryBackgroundColor).toBe(BUILD_3.commons.secondaryBackgroundColor)
-
-    // BORDER-RADIUS
-    expect(invalid.commons.borderRadius).toBe(schemes.commons.borderRadius.default)
-    expect(defaultValidated.commons.borderRadius).toBe(schemes.commons.borderRadius.default)
-    expect(build1.commons.borderRadius).toBe(BUILD_1.commons.borderRadius + 'px')
-    expect(build2.commons.borderRadius).toBe(BUILD_2.commons.borderRadius + 'px')
-    expect(build3.commons.borderRadius).toBe(BUILD_3.commons.borderRadius + 'px')
-
-    // WIDTH
-    expect(invalid.commons.width).toBe(schemes.commons.width.default)
-    expect(defaultValidated.commons.width).toBe(schemes.commons.width.default)
-    expect(build1.commons.width).toBe(BUILD_1.commons.width + 'px')
-    expect(build2.commons.width).toBe(BUILD_2.commons.width + 'px')
-    expect(build3.commons.width).toBe(BUILD_3.commons.width + 'px')
-
+    // TO DO => ADD GOOGLE FONTS AND CUSTOM FONTS(URL, FORMATS) 
+    checkStyle('commons', 'secureFont', '', 'default', ['Times, "Times New Roman", serif', '"Arial Black", Gadget, sans-serif', 'Arial, Helvetica, sans-serif'])
+    checkStyle('commons', 'fontColor')
+    checkStyle('commons', 'backgroundColor')
+    checkStyle('commons', 'secondaryBackgroundColor')
+    checkStyle('commons', 'borderRadius', 'px')
+    checkStyle('commons', 'width', 'px')
   })
 
   it('should validate header basic styles', () => {
-    // BORDER-COLOR
-    expect(invalid.header.borderColor).toBe(schemes.header.borderColor.default)
-    expect(defaultValidated.header.borderColor).toBe(schemes.header.borderColor.default)
-    expect(build1.header.borderColor).toBe(BUILD_1.header.borderColor)
-    expect(build2.header.borderColor).toBe(BUILD_2.header.borderColor)
-    expect(build3.header.borderColor).toBe(BUILD_3.header.borderColor)
-
-    // BORDER-STYLE
-    expect(invalid.header.borderStyle).toBe(schemes.header.borderStyle.default)
-    expect(defaultValidated.header.borderStyle).toBe(schemes.header.borderStyle.default)
-    expect(build1.header.borderStyle).toBe(BUILD_1.header.borderStyle)
-    expect(build2.header.borderStyle).toBe(BUILD_2.header.borderStyle)
-    expect(build3.header.borderStyle).toBe(BUILD_3.header.borderStyle)
-
-    // BORDER-SIZE
-    expect(invalid.header.borderRightSize).toBe(schemes.header.borderRightSize.default)
-    expect(defaultValidated.header.borderRightSize).toBe(schemes.header.borderRightSize.default)
-    expect(build1.header.borderRightSize).toBe(BUILD_1.header.borderRightSize + 'px')
-    expect(build2.header.borderRightSize).toBe(BUILD_2.header.borderRightSize + 'px')
-    expect(build3.header.borderRightSize).toBe(BUILD_3.header.borderRightSize + 'px')
-
-    // MARGIN
-    expect(invalid.header.margin).toBe(schemes.header.margin.default)
-    expect(defaultValidated.header.margin).toBe(schemes.header.margin.default)
-    expect(build1.header.margin).toBe(BUILD_1.header.margin + 'px')
-    expect(build2.header.margin).toBe(BUILD_2.header.margin + 'px')
-    expect(build3.header.margin).toBe(BUILD_3.header.margin + 'px')
-
-    // MARGIN-LEFT
-    expect(invalid.header.marginLeft).toBe(schemes.header.marginLeft.default)
-    expect(defaultValidated.header.marginLeft).toBe(schemes.header.marginLeft.default)
-    expect(build1.header.marginLeft).toBe(BUILD_1.header.marginLeft + 'px')
-    expect(build2.header.marginLeft).toBe(BUILD_2.header.marginLeft + 'px')
-    expect(build3.header.marginLeft).toBe(BUILD_3.header.marginLeft + 'px')
-
-    // PADDING
-    expect(invalid.header.padding).toBe(schemes.header.padding.default)
-    expect(defaultValidated.header.padding).toBe(schemes.header.padding.default)
-    expect(build1.header.padding).toBe(BUILD_1.header.padding + 'px')
-    expect(build2.header.padding).toBe(BUILD_2.header.padding + 'px')
-    expect(build3.header.padding).toBe(BUILD_3.header.padding + 'px')
-
-    // PADDING-TOP
-    expect(invalid.header.paddingTop).toBe(schemes.header.paddingTop.default)
-    expect(defaultValidated.header.paddingTop).toBe(schemes.header.paddingTop.default)
-    expect(build1.header.paddingTop).toBe(BUILD_1.header.paddingTop + 'px')
-    expect(build2.header.paddingTop).toBe(BUILD_2.header.paddingTop + 'px')
-    expect(build3.header.paddingTop).toBe(BUILD_3.header.paddingTop + 'px')
-
-    // BORDER-RADIUS
-    expect(invalid.header.borderRadius).toBe(schemes.header.borderRadius.default)
-    expect(defaultValidated.header.borderRadius).toBe(schemes.header.borderRadius.default)
-    expect(build1.header.borderRadius).toBe(BUILD_1.header.borderRadius + 'px')
-    expect(build2.header.borderRadius).toBe(BUILD_2.header.borderRadius + 'px')
-    expect(build3.header.borderRadius).toBe(BUILD_3.header.borderRadius + 'px')
-
-    // FONT-WEIGHT
-    expect(invalid.header.fontWeight).toBe(schemes.header.fontWeight.default)
-    expect(defaultValidated.header.fontWeight).toBe(schemes.header.fontWeight.default)
-    expect(build1.header.fontWeight).toBe(String(BUILD_1.header.fontWeight))
-    expect(build2.header.fontWeight).toBe(String(BUILD_2.header.fontWeight))
-    expect(build3.header.fontWeight).toBe(String(BUILD_3.header.fontWeight))
-
-    // TEXT-ALIGN
-    expect(invalid.header.textAlign).toBe(schemes.header.textAlign.default)
-    expect(defaultValidated.header.textAlign).toBe(schemes.header.textAlign.default)
-    expect(build1.header.textAlign).toBe((BUILD_1.header.textAlign).toLowerCase())
-    expect(build2.header.textAlign).toBe((BUILD_2.header.textAlign).toLowerCase())
-    expect(build3.header.textAlign).toBe((BUILD_3.header.textAlign).toLowerCase())
-
-    // TEXT-TRANSFORM
-    expect(invalid.header.textTransform).toBe(schemes.header.textTransform.default)
-    expect(defaultValidated.header.textTransform).toBe(schemes.header.textTransform.default)
-    expect(build1.header.textTransform).toBe((BUILD_1.header.textTransform).toLowerCase())
-    expect(build2.header.textTransform).toBe((BUILD_2.header.textTransform).toLowerCase())
-    expect(build3.header.textTransform).toBe((BUILD_3.header.textTransform).toLowerCase())
-
-    // TEXT-DECORATION
-    expect(invalid.header.textTransform).toBe(schemes.header.textTransform.default)
-    expect(defaultValidated.header.textTransform).toBe(schemes.header.textTransform.default)
-    expect(build1.header.textTransform).toBe((BUILD_1.header.textTransform).toLowerCase())
-    expect(build2.header.textTransform).toBe((BUILD_2.header.textTransform).toLowerCase())
-    expect(build3.header.textTransform).toBe((BUILD_3.header.textTransform).toLowerCase())
+    checkStyle('header', 'borderColor')
+    checkStyle('header', 'borderStyle')
+    checkStyle('header', 'borderRightSize', 'px')
+    checkStyle('header', 'margin', 'px')
+    checkStyle('header', 'marginLeft', 'px')
+    checkStyle('header', 'padding', 'px')
+    checkStyle('header', 'paddingTop', 'px')
+    checkStyle('header', 'borderRadius', 'px')
+    checkStyle('header', 'fontWeight', '', 'casted')
+    checkStyle('header', 'textAlign', '', 'lowercase')
+    checkStyle('header', 'textTransform', '', 'lowercase')
+    checkStyle('header', 'textDecoration', '', 'lowercase')
+    checkStyle('header', 'textDecorationStyle', '', 'lowercase')
+    checkStyle('header', 'color')
+    checkStyle('header', 'backgroundColor')
+    checkStyle('header', 'secureFont', '', 'default', ['"Comic Sans MS", cursive, sans-serif', '"Trebuchet MS", Helvetica, sans-serif', '"Courier New", Courier, monospace'])
   })
 })

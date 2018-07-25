@@ -133,6 +133,7 @@ const basics = {
   backgroundColor: { type: 'color', default: null },
   color: { type: 'color', default: null },
   textDecoration: { type: 'textDecoration', default: 'none' },
+  textDecorationStyle: { type: 'textDecorationStyle', default: 'none' },
   textTransform: { type: 'textTransform', default: 'none' },
   textAlign: { type: 'align', default: null },
   secureFont: { type: 'secureFont', default: null },
