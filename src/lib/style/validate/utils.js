@@ -73,6 +73,7 @@ const types = {
   secureFont: checkFromList($v.secureFonts, true),
   textDecoration: checkFromList($v.textDecoration),
   textDecorationStyle: checkFromList($v.textDecorationStyle),
+  float: checkFromList($v.float, true),
   boolean: {
     check: x => typeof x === 'boolean',
     normalize: x => x,

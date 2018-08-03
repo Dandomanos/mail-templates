@@ -92,6 +92,10 @@ const commons = {
   borderRadius: { type: 'px', default: '5px' },
   width: { type: 'px', default: '700px' },
 }
+const defaultLogoHeader = {
+  padding: { type: 'px', default: '5px' }
+}
+const logoHeader = { ...basicStyles, ...defaultLogoHeader }
 const header = { ...basicStyles }
 const defaultBlock = { padding: { type: 'px', default: '20px' } }
 const block = { ...basicStyles, ...defaultBlock }
@@ -103,6 +107,10 @@ const stylesScheme = {
   commons: {
     type: 'object',
     default: commons,
+  },
+  logoHeader: {
+    type: 'object',
+    default: logoHeader
   },
   header: {
     type: 'object',
@@ -124,14 +132,6 @@ const stylesScheme = {
     type: 'object',
     default: paragraph,
   },
-  fontFamily: {
-    type: 'string',
-    default: 'Gotham',
-  },
-  footerTextColor: {
-    type: 'color',
-    default: '#fff',
-  },
   h1: {
     type: 'object',
     default: h1,
@@ -140,6 +140,7 @@ const stylesScheme = {
 
 const schemes = {
   commons,
+  logoHeader,
   header,
   block,
   primaryButton,

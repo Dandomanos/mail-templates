@@ -41,5 +41,11 @@ const margins = {
   marginBottom: { type: 'px', default: null },
 }
 
-const basicStyles = { ...basics, ...borders, ...paddings, ...margins }
+const images = {
+  imgMaxWidth: { type: 'px', default: null },
+  imgMaxHeight: { type: 'px', default: null },
+  imgAlign: { type: 'float', default: null }
+}
+
+const basicStyles = { ...basics, ...borders, ...paddings, ...margins, ...images }
 module.exports = basicStyles

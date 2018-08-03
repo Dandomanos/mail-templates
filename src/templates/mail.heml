@@ -30,7 +30,15 @@
         max-width: <%= style.commons.width %>;
         background-color:<%= style.commons.backgroundColor %>;
       }
+      .logoHeader {
+        box-sizing:content-box;
+        <%= style.logoHeaderStyle %>
+      }
+      .logoHeader img  {
+        <%= style.logoHeaderImgStyle %>
+      }
       .headerImage {
+        clear:both;
         text-align:center;       
         <%= style.headerStyle %>
       }

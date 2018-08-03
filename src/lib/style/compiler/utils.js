@@ -25,6 +25,17 @@ const getMaxWidth = (element = {}) => {
   return `max-width: calc(100% - ${removeUnits(element.marginLeft) +
     removeUnits(element.marginRight)}px);`
 }
+const getMinHeight = (element = {}) => {
+  return element.imgMaxHeight ? `min-height: ${element.imgMaxHeight}` : ''
+}
+
+const getImageStyle = (element = {}) => {
+  element.imgMaxWidth && console.log('element', element)
+  const maxWidth = element.imgMaxWidth ? `max-width: ${element.imgMaxWidth};` : ''
+  const maxHeight = element.imgMaxHeight ? `max-height: ${element.imgMaxHeight};` : ''
+  const imgAlign = element.imgAlign
+  return maxWidth || maxHeight || imgAlign ? `${maxWidth}${maxHeight}${imgAlign}` : ''
+}
 
 /* ********************      AUX       ***************** */
 
@@ -40,6 +51,8 @@ const utils = {
   getBorder,
   getSideElement,
   getMaxWidth,
+  getImageStyle,
+  getMinHeight
 }
 
 module.exports = utils

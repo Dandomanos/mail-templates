@@ -10,6 +10,9 @@ const BUILD_1 = {
     borderRadius: 10,
     width: 450,
   },
+  logoHeader: {
+    imgAlign: 'right'
+  },
   header: {
     borderColor: 'inherit',
     borderStyle: 'dotted',
@@ -38,6 +41,9 @@ const BUILD_2 = {
     borderRadius: 4,
     width: 750,
   },
+  logoHeader: {
+    imgAlign: 'center'
+  },
   header: {
     borderColor: 'tomato',
     borderStyle: 'double',
@@ -65,6 +71,9 @@ const BUILD_3 = {
     secondaryBackgroundColor: 'transparent',
     borderRadius: 0,
     width: 500,
+  },
+  logoHeader: {
+    imgAlign: 'left'
   },
   header: {
     borderColor: '#FF00FF',
@@ -120,7 +129,6 @@ const build2 = validate.getValidatedStyle(BUILD_2)
 const build3 = validate.getValidatedStyle(BUILD_3)
 
 const checkStyle = (element = 'commons', style = 'fontColor', concat = '', type = 'default', values = []) => {
-  // FONT-COLOR
   expect(invalid[element][style]).toBe(schemes[element][style].default)
   expect(defaultValidated[element][style]).toBe(schemes[element][style].default)
   expect(build1[element][style]).toBe(getValue(values[0] || `${BUILD_1[element][style]}${concat}`, type))
@@ -168,8 +176,17 @@ describe('validate styles', () => {
     checkStyle('header', 'secureFont', '', 'default', ['"Comic Sans MS", cursive, sans-serif', '"Trebuchet MS", Helvetica, sans-serif', '"Courier New", Courier, monospace'])
   })
 
+  it('validate logoHeader special img styles', () => {
+    expect(invalid.logoHeader.imgAlign).toBe(schemes.logoHeader.imgAlign.default)
+    expect(defaultValidated.logoHeader.imgAlign).toBe(schemes.logoHeader.imgAlign.default)
+    expect(build1.logoHeader.imgAlign).toBe('float: right;')
+    expect(build2.logoHeader.imgAlign).toBe('margin: 0 auto;')
+    expect(build3.logoHeader.imgAlign).toBe('float: left;')
+  })
+
   it('should have different default value for components', () => {
     expect(defaultValidated.header.padding).toBe('0px')
     expect(defaultValidated.block.padding).toBe('20px')
+    expect(defaultValidated.logoHeader.padding).toBe('5px')
   })
 })
