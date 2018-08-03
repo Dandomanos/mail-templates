@@ -6,7 +6,8 @@ const basics = {
   textTransform: { type: 'textTransform', default: 'none' },
   textAlign: { type: 'align', default: null },
   secureFont: { type: 'secureFont', default: null },
-  fontWeight: { type: 'fontWeight', default: null }
+  fontWeight: { type: 'fontWeight', default: null },
+  fontSize: { type: 'px', default: null }
 }
 const borders = {
   borderColor: { type: 'color', default: 'transparent' },
