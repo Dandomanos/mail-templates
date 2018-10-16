@@ -17,14 +17,11 @@ const getCompiledStyle = (style = {}) => {
 
 const getBasicStyles = (style = {}, key = '') => {
   const element = _.get(style, key, {})
-  const SIDES = ['', 'top', 'right', 'left', 'bottom']
-  console.log('min-height', utils.getMinHeight(element))
   return `
-    ${SIDES.reduce((prev, cur) => prev + utils.getBorder(element, cur), '')}
-    ${SIDES.reduce((prev, cur) => prev + utils.getSideElement(element, cur, 'padding'), '')}
-    ${SIDES.reduce((prev, cur) => prev + utils.getSideElement(element, cur, 'margin'), '')}
     ${utils.getMaxWidth(element)}
     ${utils.getMinHeight(element)}
+    ${utils.getFonts(element)}
+    ${utils.getBasics(element)}
   `
 }
 

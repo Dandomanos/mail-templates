@@ -51,10 +51,8 @@
         width:100%;
         margin:0;
       }
-      h1 {
-        font-size:<%= style.h1.fontSize %>;
-        /* font-family: '<%= style.commons.fontFamily %>', Sans-Serif; */
-        margin-bottom:0;
+      h1, .title, h1.title {
+        <%= style.h1Style %>
       }
       block {
         <%= style.blockStyle %>
@@ -68,9 +66,9 @@
         background-color: <%= style.primaryButton.backgroundColor %>;
         border-radius: <%= style.primaryButton.borderRadius %>;
         border-color: <%= style.primaryButton.borderColor %>;
-        border-width: <%= style.primaryButton.borderSize %>;
+        border-width: <%= style.primaryButton.borderWidth %>;
         color: <%= style.primaryButton.textColor %>;
-        border: <%= style.primaryButton.borderSize %> solid <%= style.primaryButton.borderColor %>;
+        border: <%= style.primaryButton.borderWidth %> solid <%= style.primaryButton.borderColor %>;
         
       }
       button.secondary {
@@ -78,9 +76,9 @@
         background-color: <%= style.secondaryButton.backgroundColor %>;
         border-radius: <%= style.secondaryButton.borderRadius %>;
         border-color: <%= style.secondaryButton.borderColor %>;
-        border-width: <%= style.secondaryButton.borderSize %>;
+        border-width: <%= style.secondaryButton.borderWidth %>;
         color: <%= style.secondaryButton.textColor %>;
-        border: <%= style.secondaryButton.borderSize %> solid <%= style.secondaryButton.borderColor %>;
+        border: <%= style.secondaryButton.borderWidth %> solid <%= style.secondaryButton.borderColor %>;
       }
       .voucher {
         width:360px;
@@ -89,7 +87,7 @@
         box-sizing:border-box;
       }
       .voucherP {
-        border:<%= style.input.borderSize %> solid <%= style.input.borderColor %>;
+        border:<%= style.input.borderWidth %> solid <%= style.input.borderColor %>;
         border-radius: <%= style.commons.borderRadius %>;
         width:100%;
         padding: 18px 0px;
@@ -103,7 +101,7 @@
       <%= content.logoHeader ? '<div class="logoHeader"><img src="' + content.logoHeader + '" alt="" /></div>' : '' %>
       <%= content.headerImage ? '<div class="headerImage"><img src="' + content.headerImage + '" alt="" /></div>' : '' %>
       <block>
-        <h1><%= content.title %></h1>
+        <h1 class="title"><%= content.title %></h1>
         <p><%= content.content %></p>
         <%= content.voucher ? '<block class="voucher"><p class="voucherP">'+content.voucher+'</p></block>' : '' %>
         <button href="<%= content.primaryUrl %>"><%= content.buttonText %></button>

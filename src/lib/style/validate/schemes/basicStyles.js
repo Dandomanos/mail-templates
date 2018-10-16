@@ -10,20 +10,25 @@ const basics = {
   fontSize: { type: 'px', default: null }
 }
 const borders = {
-  borderColor: { type: 'color', default: 'transparent' },
-  borderSize: { type: 'px', default: 'none' },
-  borderStyle: { type: 'borderStyle', default: 'solid' },
+  border: { type: 'border', default: null },
+  borderLeft: { type: 'border', default: null },
+  borderTop: { type: 'border', default: null },
+  borderRight: { type: 'border', default: null },
+  borderBottom: { type: 'border', default: null },
+  borderColor: { type: 'color', default: null },
+  borderWidth: { type: 'px', default: null },
+  borderStyle: { type: 'borderStyle', default: null },
   borderLeftColor: { type: 'color', default: null },
-  borderLeftSize: { type: 'px', default: null },
+  borderLeftWidth: { type: 'px', default: null },
   borderLeftStyle: { type: 'borderStyle', default: null },
   borderRightColor: { type: 'color', default: null },
-  borderRightSize: { type: 'px', default: null },
+  borderRightWidth: { type: 'px', default: null },
   borderRightStyle: { type: 'borderStyle', default: null },
   borderTopColor: { type: 'color', default: null },
-  borderTopSize: { type: 'px', default: null },
+  borderTopWidth: { type: 'px', default: null },
   borderTopStyle: { type: 'borderStyle', default: null },
   borderBottomColor: { type: 'color', default: null },
-  borderBottomSize: { type: 'px', default: null },
+  borderBottomWidth: { type: 'px', default: null },
   borderBottomStyle: { type: 'borderStyle', default: null },
   borderRadius: { type: 'px', default: '0px' }
 }

@@ -17,7 +17,7 @@ const defaultPrimaryButton = {
     type: 'px',
     default: '5px',
   },
-  borderSize: {
+  borderWidth: {
     type: 'px',
     default: '0px',
   },
@@ -43,22 +43,18 @@ const defaultSecondaryButton = {
     type: 'px',
     default: '5px',
   },
-  borderSize: {
+  borderWidth: {
     type: 'px',
     default: '0px',
   },
 }
 
-const h1 = {
-  fontFamilyActive: {
-    type: 'boolean',
-    default: false,
-  },
+const defaultH1 = {
   fontFamily: {
     type: 'string',
     default: 'Gotham',
   },
-  fontAlignment: {
+  textAlign: {
     type: 'align',
     default: 'center',
   },
@@ -66,10 +62,22 @@ const h1 = {
     type: 'fontWeight',
     default: 'bold',
   },
-  fontColor: {
+  textDecoration: {
+    type: 'textDecoration',
+    default: 'none'
+  },
+  textTransform: {
+    type: 'textTransform',
+    default: 'none',
+  },
+  color: {
     type: 'color',
     default: '#474747',
   },
+  fontSize: {
+    type: 'px',
+    default: '25px',
+  }
 }
 
 const paragraph = {
@@ -101,6 +109,7 @@ const defaultBlock = { padding: { type: 'px', default: '20px' } }
 const block = { ...basicStyles, ...defaultBlock }
 const primaryButton = { ...basicStyles, ...defaultPrimaryButton }
 const secondaryButton = { ...basicStyles, ...defaultSecondaryButton }
+const h1 = { ...basicStyles, ...defaultH1 }
 
 
 const stylesScheme = {

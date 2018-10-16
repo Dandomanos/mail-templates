@@ -38,15 +38,10 @@ function throwError(key, err) {
   throw new Error(err)
 }
 const getTemplate = co.wrap(function* (config, templateName = 'mail', fullObjectReturn = false) {
-  // Prevent configuration errors
-  // if (!config.environment) throwError('noEnviroment', Errors.noEnviroment)
-  // if (!config.promoId) throwError('noPromoId', Errors.noPromoId)
-  // if (!config.status) throwError('noStatus', Errors.noStatus)
-  // if (!config.promoUrl) throwError('noPromoUrl', Errors.noPromoUrl)
 
   // Get Promo Style
   const promoStyle = getStyle(config.style) || {}
-  // debug('PromoStyle LOADED', promoStyle)
+  debug('PromoStyle LOADED')
 
   config.style = { ...config.style, ...promoStyle }
 

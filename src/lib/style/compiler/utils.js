@@ -1,17 +1,3 @@
-const getBorder = (element = {}, side = '') => {
-  const Side = capitalize(side)
-  const size = element[`border${Side}Size`]
-  const color = element[`border${Side}Color`]
-  const style = element[`border${Side}Style`]
-  const bkUpSize = element[`borderSize`]
-  const bkUpColor = element[`borderColor`]
-  const bkUpstyle = element[`borderStyle`]
-  return size || color || style
-    ? `
-    border${side && '-' + side}: ${size || bkUpSize} ${style || bkUpstyle} ${color || bkUpColor};`
-    : ''
-}
-
 const getSideElement = (element = {}, side = '', style = 'margin') => {
   const Side = capitalize(side)
   const Style = element[`${style}${Side}`]
@@ -30,11 +16,19 @@ const getMinHeight = (element = {}) => {
 }
 
 const getImageStyle = (element = {}) => {
-  element.imgMaxWidth && console.log('element', element)
   const maxWidth = element.imgMaxWidth ? `max-width: ${element.imgMaxWidth};` : ''
   const maxHeight = element.imgMaxHeight ? `max-height: ${element.imgMaxHeight};` : ''
   const imgAlign = element.imgAlign
   return maxWidth || maxHeight || imgAlign ? `${maxWidth}${maxHeight}${imgAlign}` : ''
+}
+
+const getFonts = (element = {}) => {
+  const properties = ['fontSize', 'color', 'fontWeight', 'textDecoration', 'textAlign', 'textTransform']
+  return properties.reduce((prev, cur) => `${prev}${compileCamelStyle(element, cur)}`, '')
+}
+
+const getBasics = (element = {}) => {
+  return Object.keys(element).reduce((prev, cur) => `${prev}${compileCamelStyle(element, cur)}`, '')
 }
 
 /* ********************      AUX       ***************** */
@@ -47,12 +41,21 @@ const capitalize = (string = '') => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+const camelToKebab = (string = '') => {
+  return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+const compileCamelStyle = (element = {}, key = '') => {
+  return element[key] ? `${camelToKebab(key)}: ${element[key]};\n` : ''
+}
+
 const utils = {
-  getBorder,
   getSideElement,
   getMaxWidth,
   getImageStyle,
-  getMinHeight
+  getMinHeight,
+  getFonts,
+  getBasics
 }
 
 module.exports = utils

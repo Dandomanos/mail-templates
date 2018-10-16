@@ -16,7 +16,7 @@ const BUILD_1 = {
   header: {
     borderColor: 'inherit',
     borderStyle: 'dotted',
-    borderRightSize: 2,
+    borderRightWidth: 2,
     margin: 0,
     marginLeft: 5,
     padding: 3,
@@ -47,7 +47,7 @@ const BUILD_2 = {
   header: {
     borderColor: 'tomato',
     borderStyle: 'double',
-    borderRightSize: '3',
+    borderRightWidth: '3',
     margin: '0',
     marginLeft: '2',
     padding: '0',
@@ -78,7 +78,7 @@ const BUILD_3 = {
   header: {
     borderColor: '#FF00FF',
     borderStyle: 'groove',
-    borderRightSize: 1,
+    borderRightWidth: 1,
     margin: '5',
     marginLeft: 0,
     padding: 0,
@@ -104,7 +104,7 @@ const INVALID = {
   header: {
     borderColor: '#MMHH44',
     borderStyle: 'invalidStyle',
-    borderRightSize: 'two',
+    borderRightWidth: 'two',
     margin: '0px',
     marginLeft: 'one',
     padding: '1rem',
@@ -160,7 +160,7 @@ describe('validate styles', () => {
   it('should validate header basic styles', () => {
     checkStyle('header', 'borderColor')
     checkStyle('header', 'borderStyle')
-    checkStyle('header', 'borderRightSize', 'px')
+    checkStyle('header', 'borderRightWidth', 'px')
     checkStyle('header', 'margin', 'px')
     checkStyle('header', 'marginLeft', 'px')
     checkStyle('header', 'padding', 'px')

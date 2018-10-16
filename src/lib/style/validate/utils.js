@@ -69,6 +69,23 @@ const types = {
   align: checkFromList($v.textAlign),
   textTransform: checkFromList($v.textTransform),
   fontWeight: checkFromList($v.fontWeight),
+  border: {
+    check: x => typeof x === 'string',
+    normalize: x => {
+      const borderArray = x && x.split(' ')
+      const border = {}
+      if (borderArray && borderArray.length) {
+        borderArray.forEach(item => {
+          const isWidth = item.includes('px') && item.replace('px', '').match(/^[0-9]*$/)
+          const isBorderStyle = $v.borderStyle.includes(String(item).toLowerCase())
+          if (isWidth) border.width = item
+          if (isBorderStyle) border.style = item.toLowerCase()
+          if (isColor(item)) border.color = item
+        })
+      }
+      return Object.keys(border).reduce((prev, cur, index) => prev.concat(`${index > 0 ? ' ' : ''}${border[cur]}`), '')
+    },
+  },
   borderStyle: checkFromList($v.borderStyle),
   secureFont: checkFromList($v.secureFonts, true),
   textDecoration: checkFromList($v.textDecoration),
