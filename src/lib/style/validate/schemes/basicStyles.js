@@ -1,9 +1,9 @@
 const basics = {
   backgroundColor: { type: 'color', default: null },
   color: { type: 'color', default: null },
-  textDecoration: { type: 'textDecoration', default: 'none' },
-  textDecorationStyle: { type: 'textDecorationStyle', default: 'none' },
-  textTransform: { type: 'textTransform', default: 'none' },
+  textDecoration: { type: 'textDecoration', default: null },
+  textDecorationStyle: { type: 'textDecorationStyle', default: null },
+  textTransform: { type: 'textTransform', default: null },
   textAlign: { type: 'align', default: null },
   secureFont: { type: 'secureFont', default: null },
   fontWeight: { type: 'fontWeight', default: null },
@@ -30,17 +30,17 @@ const borders = {
   borderBottomColor: { type: 'color', default: null },
   borderBottomWidth: { type: 'px', default: null },
   borderBottomStyle: { type: 'borderStyle', default: null },
-  borderRadius: { type: 'px', default: '0px' }
+  borderRadius: { type: 'px', default: null }
 }
 const paddings = {
-  padding: { type: 'px', default: '0px' },
+  padding: { type: 'px', default: null },
   paddingTop: { type: 'px', default: null },
   paddingRight: { type: 'px', default: null },
   paddingLeft: { type: 'px', default: null },
   paddingBottom: { type: 'px', default: null },
 }
 const margins = {
-  margin: { type: 'px', default: '0px' },
+  margin: { type: 'px', default: null },
   marginTop: { type: 'px', default: null },
   marginRight: { type: 'px', default: null },
   marginLeft: { type: 'px', default: null },

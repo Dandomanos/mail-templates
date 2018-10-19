@@ -21,6 +21,10 @@ const defaultPrimaryButton = {
     type: 'px',
     default: '0px',
   },
+  minWidth: {
+    type: 'px',
+    default: '200px'
+  }
 }
 const defaultSecondaryButton = {
   highlightedBorder: {
@@ -49,7 +53,7 @@ const defaultSecondaryButton = {
   },
 }
 
-const defaultH1 = {
+const defaultTitle = {
   fontFamily: {
     type: 'string',
     default: 'Gotham',
@@ -77,7 +81,50 @@ const defaultH1 = {
   fontSize: {
     type: 'px',
     default: '25px',
+  },
+  marginTop: {
+    type: 'px',
+    default: '16px'
   }
+}
+
+const defaultSubtitle = {
+  fontFamily: {
+    type: 'string',
+    default: 'Gotham',
+  },
+  textAlign: {
+    type: 'align',
+    default: 'center',
+  },
+  fontWeight: {
+    type: 'fontWeight',
+    default: 'bold',
+  },
+  textDecoration: {
+    type: 'textDecoration',
+    default: 'none'
+  },
+  textTransform: {
+    type: 'textTransform',
+    default: 'none',
+  },
+  color: {
+    type: 'color',
+    default: '#474747',
+  },
+  fontSize: {
+    type: 'px',
+    default: '20px',
+  },
+  marginTop: {
+    type: 'px',
+    default: '16px'
+  }
+}
+
+const defaultDescription = {
+  // TODO add default values for section description
 }
 
 const paragraph = {
@@ -100,16 +147,25 @@ const commons = {
   borderRadius: { type: 'px', default: '5px' },
   width: { type: 'px', default: '700px' },
 }
-const defaultLogoHeader = {
-  padding: { type: 'px', default: '5px' }
+const defaultLogo = {
+  padding: { type: 'px', default: '5px' },
+  imgMaxWidth: { type: 'px', default: '50px' },
+  imgMaxHeight: { type: 'px', default: '50px' },
+  imgAlign: { type: 'float', default: 'float:left;' },
 }
-const logoHeader = { ...basicStyles, ...defaultLogoHeader }
+const defaultSection = {
+  padding: { type: 'px', default: '10px' }
+}
+const logo = { ...basicStyles, ...defaultLogo }
 const header = { ...basicStyles }
 const defaultBlock = { padding: { type: 'px', default: '20px' } }
 const block = { ...basicStyles, ...defaultBlock }
 const primaryButton = { ...basicStyles, ...defaultPrimaryButton }
 const secondaryButton = { ...basicStyles, ...defaultSecondaryButton }
-const h1 = { ...basicStyles, ...defaultH1 }
+const title = { ...basicStyles, ...defaultTitle }
+const subtitle = { ...basicStyles, ...defaultSubtitle }
+const description = { ...basicStyles, ...defaultDescription }
+const section = { ...basicStyles, ...defaultSection }
 
 
 const stylesScheme = {
@@ -117,9 +173,9 @@ const stylesScheme = {
     type: 'object',
     default: commons,
   },
-  logoHeader: {
+  logo: {
     type: 'object',
-    default: logoHeader
+    default: logo
   },
   header: {
     type: 'object',
@@ -141,21 +197,35 @@ const stylesScheme = {
     type: 'object',
     default: paragraph,
   },
-  h1: {
+  title: {
     type: 'object',
-    default: h1,
+    default: title,
+  },
+  subtitle: {
+    type: 'object',
+    default: subtitle,
+  },
+  description: {
+    type: 'object',
+    default: description,
+  },
+  section: {
+    type: 'object',
+    default: section,
   },
 }
 
 const schemes = {
   commons,
-  logoHeader,
+  logo,
   header,
   block,
   primaryButton,
   secondaryButton,
   stylesScheme,
-  h1,
+  title,
+  subtitle,
+  description,
   paragraph,
 }
 module.exports = schemes

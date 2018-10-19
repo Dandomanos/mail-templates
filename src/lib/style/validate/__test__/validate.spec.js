@@ -10,7 +10,7 @@ const BUILD_1 = {
     borderRadius: 10,
     width: 450,
   },
-  logoHeader: {
+  logo: {
     imgAlign: 'right'
   },
   header: {
@@ -41,7 +41,7 @@ const BUILD_2 = {
     borderRadius: 4,
     width: 750,
   },
-  logoHeader: {
+  logo: {
     imgAlign: 'center'
   },
   header: {
@@ -72,7 +72,7 @@ const BUILD_3 = {
     borderRadius: 0,
     width: 500,
   },
-  logoHeader: {
+  logo: {
     imgAlign: 'left'
   },
   header: {
@@ -176,17 +176,17 @@ describe('validate styles', () => {
     checkStyle('header', 'secureFont', '', 'default', ['"Comic Sans MS", cursive, sans-serif', '"Trebuchet MS", Helvetica, sans-serif', '"Courier New", Courier, monospace'])
   })
 
-  it('validate logoHeader special img styles', () => {
-    expect(invalid.logoHeader.imgAlign).toBe(schemes.logoHeader.imgAlign.default)
-    expect(defaultValidated.logoHeader.imgAlign).toBe(schemes.logoHeader.imgAlign.default)
-    expect(build1.logoHeader.imgAlign).toBe('float: right;')
-    expect(build2.logoHeader.imgAlign).toBe('margin: 0 auto;')
-    expect(build3.logoHeader.imgAlign).toBe('float: left;')
+  it('validate logo special img styles', () => {
+    expect(invalid.logo.imgAlign).toBe(schemes.logo.imgAlign.default)
+    expect(defaultValidated.logo.imgAlign).toBe(schemes.logo.imgAlign.default)
+    expect(build1.logo.imgAlign).toBe('float: right;')
+    expect(build2.logo.imgAlign).toBe('margin: 0 auto;')
+    expect(build3.logo.imgAlign).toBe('float: left;')
   })
 
   it('should have different default value for components', () => {
-    expect(defaultValidated.header.padding).toBe('0px')
+    expect(defaultValidated.header.padding).toBe(null)
     expect(defaultValidated.block.padding).toBe('20px')
-    expect(defaultValidated.logoHeader.padding).toBe('5px')
+    expect(defaultValidated.logo.padding).toBe('5px')
   })
 })

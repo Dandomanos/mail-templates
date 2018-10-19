@@ -46,7 +46,7 @@ const camelToKebab = (string = '') => {
 }
 
 const compileCamelStyle = (element = {}, key = '') => {
-  return element[key] ? `${camelToKebab(key)}: ${element[key]};\n` : ''
+  return element[key] && !key.includes('img') ? `${camelToKebab(key)}: ${element[key]};\n` : ''
 }
 
 const utils = {

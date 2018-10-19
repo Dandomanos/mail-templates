@@ -5,6 +5,8 @@ const _ = require('lodash')
 const co = require('co')
 
 const getStyle = require('./src/lib/style/getStyle')
+const getContent = require('./src/lib/content/getContent')
+
 
 const hemlOptions = {
   validate: 'soft', // validation levels - 'strict'|'soft'|'none'
@@ -41,7 +43,7 @@ const getTemplate = co.wrap(function* (config, templateName = 'mail', fullObject
 
   // Get Promo Style
   const promoStyle = getStyle(config.style) || {}
-  debug('PromoStyle LOADED')
+  debug('PromoStyle LOADED', promoStyle)
 
   config.style = { ...config.style, ...promoStyle }
 
@@ -56,9 +58,9 @@ const getTemplate = co.wrap(function* (config, templateName = 'mail', fullObject
   }
 
   // Get Promo Content
-  // const templateContent = getPromoContent(promoConfig, config.lang, config)
-  // const templateContent = config.content || {}
-  // debug('PromoContent LOADED', templateContent)
+  const templateContent = getContent(config.content)
+  config.content = templateContent
+  console.log('templateContent', templateContent)
 
   // Compile email with promoStyle and templateContent
   let mailTemplate

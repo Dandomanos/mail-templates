@@ -30,12 +30,12 @@
         max-width: <%= style.commons.width %>;
         background-color:<%= style.commons.backgroundColor %>;
       }
-      .logoHeader {
+      .logo {
         box-sizing:content-box;
-        <%= style.logoHeaderStyle %>
+        <%= style.logoStyle %>
       }
-      .logoHeader img  {
-        <%= style.logoHeaderImgStyle %>
+      .logo img  {
+        <%= style.logoImgStyle %>
       }
       .headerImage {
         clear:both;
@@ -47,58 +47,35 @@
         width:100%;
         max-width:<%= style.commons.width %>;
       }
+      .section {
+        <%= style.sectionStyle %>
+      }
       p {
         width:100%;
         margin:0;
       }
-      h1, .title, h1.title {
-        <%= style.h1Style %>
+      h1.title {
+        <%= style.titleStyle %>
       }
-      block {
-        <%= style.blockStyle %>
-        text-align:center;
+      h2.subtitle {
+        <%= style.subtitleStyle %>
       }
-      button {
-        width:320px;
-        padding: 20px 11px;
-        box-sizing:border-box;
-        /* font-family: '<%= style.commons.fontFamily %>', Sans-Serif; */
-        background-color: <%= style.primaryButton.backgroundColor %>;
-        border-radius: <%= style.primaryButton.borderRadius %>;
-        border-color: <%= style.primaryButton.borderColor %>;
-        border-width: <%= style.primaryButton.borderWidth %>;
-        color: <%= style.primaryButton.textColor %>;
-        border: <%= style.primaryButton.borderWidth %> solid <%= style.primaryButton.borderColor %>;
-        
+      p.description {
+        <%= style.descriptionStyle %>
       }
-      button.secondary {
-        margin-top:16px;
-        background-color: <%= style.secondaryButton.backgroundColor %>;
-        border-radius: <%= style.secondaryButton.borderRadius %>;
-        border-color: <%= style.secondaryButton.borderColor %>;
-        border-width: <%= style.secondaryButton.borderWidth %>;
-        color: <%= style.secondaryButton.textColor %>;
-        border: <%= style.secondaryButton.borderWidth %> solid <%= style.secondaryButton.borderColor %>;
+      button.button {
+        <%= style.primaryButtonStyle %>
       }
-      .voucher {
-        width:360px;
-        text-align:center;
-        margin:0 auto;
-        box-sizing:border-box;
+      button.button2 {
+        <%= style.secondaryButtonStyle %>
       }
-      .voucherP {
-        border:<%= style.input.borderWidth %> solid <%= style.input.borderColor %>;
-        border-radius: <%= style.commons.borderRadius %>;
-        width:100%;
-        padding: 18px 0px;
-        box-sizing:border-box;
-      }
+      
     </style>
   </head>
   <body>
     <container>
     <!-- Header -->
-      <%= content.logoHeader ? '<div class="logoHeader"><img src="' + content.logoHeader + '" alt="" /></div>' : '' %>
+      <!-- <%= content.logoHeader ? '<div class="logoHeader"><img src="' + content.logoHeader + '" alt="" /></div>' : '' %>
       <%= content.headerImage ? '<div class="headerImage"><img src="' + content.headerImage + '" alt="" /></div>' : '' %>
       <block>
         <h1 class="title"><%= content.title %></h1>
@@ -107,6 +84,8 @@
         <button href="<%= content.primaryUrl %>"><%= content.buttonText %></button>
         <%= content.secondaryButton %>
       </block>
+      <% _.forEach(content, function(content) { %><div><%- content %></a><% }); %> #} -->
+      <%= content %>
     </container>
   </body>
 </heml>
